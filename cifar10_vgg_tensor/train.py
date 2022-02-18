@@ -27,7 +27,7 @@ def main():
     parser.add_argument('--lp', type=bool, default=True)
     parser.add_argument('--scale', type=bool, default=True)
 
-    parser.add_argument('--batch-size', type=int, default=30, metavar='N',
+    parser.add_argument('--batch-size', type=int, default=128, metavar='N',
                         help='input batch size for training (default: 128)')
     parser.add_argument('--rank-loss', type=bool, default=False)
     parser.add_argument('--kl-multiplier', type=float, default=1.0) #account for the batch size,dataset size, and renormalize
@@ -60,7 +60,7 @@ def main():
 
     torch.manual_seed(args.seed)
 
-    device = torch.device("cuda" if use_cuda else "cpu")
+    device = torch.device("cuda:1" if use_cuda else "cpu")
 
     train_kwargs = {'batch_size': args.batch_size}
     test_kwargs = {'batch_size': args.test_batch_size}

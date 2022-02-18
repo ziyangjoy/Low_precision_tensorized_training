@@ -300,7 +300,7 @@ class VGG_tensor_LP_scale(nn.Module):
         shape3 = [[16,32], [2,5]]
 
 
-        bit = 4
+        bit = 8
         s = 2**-3
 
 
