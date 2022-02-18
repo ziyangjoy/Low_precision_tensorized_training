@@ -169,7 +169,7 @@ class ScaleLayer(nn.Module):
 
        max_q = 2.0**(bit-1)-1.0
        min_q = -2.0**(bit-1)
-       quant = lambda x : fixed_point_quantize(x, wl=8, fl=0, rounding="nearest")
+       quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
 
        self.quant = quant
        self.min_q = min_q
@@ -201,7 +201,7 @@ class Quantized_Linear(nn.Linear):
 
         self.max_q = 2.0**(bit-1)-1.0
         self.min_q = -2.0**(bit-1)
-        self.quant = lambda x : fixed_point_quantize(x, wl=8, fl=0, rounding="nearest")
+        self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
 
         self.scale_w = nn.Parameter(torch.FloatTensor([scale_w]))
         self.scale_b = nn.Parameter(torch.FloatTensor([scale_b]))
