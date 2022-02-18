@@ -130,13 +130,17 @@ class scale(torch.autograd.Function):
     """
 
     @staticmethod
-    def forward(ctx, input, scale, quant, min_q, max_q):
+    def forward(ctx, input, scale, bit):
         """
         In the forward pass we receive a Tensor containing the input and return
         a Tensor containing the output. ctx is a context object that can be used
         to stash information for backward computation. You can cache arbitrary
         objects for use in the backward pass using the ctx.save_for_backward method.
         """
+        max_q = 2.0**(bit-1)-1.0
+        min_q = -2.0**(bit-1)
+        quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+
         ctx.save_for_backward(input, scale)
         ctx.quant = quant
         ctx.input_div_scale = input/scale
@@ -167,16 +171,18 @@ class ScaleLayer(nn.Module):
        super().__init__()
        self.scale = nn.Parameter(torch.FloatTensor([scale]))
 
-       max_q = 2.0**(bit-1)-1.0
-       min_q = -2.0**(bit-1)
-       quant = lambda x : fixed_point_quantize(x, wl=8, fl=0, rounding="nearest")
+       self.bit = bit
 
-       self.quant = quant
-       self.min_q = min_q
-       self.max_q = max_q
+    #    max_q = 2.0**(bit-1)-1.0
+    #    min_q = -2.0**(bit-1)
+    #    quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+
+    #    self.quant = quant
+    #    self.min_q = min_q
+    #    self.max_q = max_q
 
    def forward(self, input):
-       return scale.apply(input,self.scale,self.quant,self.min_q,self.max_q)
+       return scale.apply(input,self.scale,self.bit)
 
 
 class Quantized_Linear(nn.Linear):
@@ -199,17 +205,19 @@ class Quantized_Linear(nn.Linear):
         self.in_features = in_features
         self.out_features = out_features
 
-        self.max_q = 2.0**(bit-1)-1.0
-        self.min_q = -2.0**(bit-1)
-        self.quant = lambda x : fixed_point_quantize(x, wl=8, fl=0, rounding="nearest")
+        self.bit = bit
+
+        # self.max_q = 2.0**(bit-1)-1.0
+        # self.min_q = -2.0**(bit-1)
+        # self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
 
         self.scale_w = nn.Parameter(torch.FloatTensor([scale_w]))
         self.scale_b = nn.Parameter(torch.FloatTensor([scale_b]))
        
 
     def forward(self, input):
-        self.weight = scale.apply(self.weight,self.scale_w,self.quant,self.min_q,self.max_q)
-        self.bias = scale.apply(self.bias,self.scale_b,self.quant,self.min_q,self.max_q)
+        self.weight = scale.apply(self.weight,self.scale_w,self.bit)
+        self.bias = scale.apply(self.bias,self.scale_b,self.bit)
         
         return F.linear(input,self.weight,self.bias)
 
@@ -240,12 +248,14 @@ class Q_TensorizedLinear(nn.Linear):
         self.out_features = out_features
         target_stddev = np.sqrt(2/self.in_features)
 
+        self.bit = bit
+
         #shape taken care of at input time
         self.tensor = getattr(low_rank_tensors,tensor_type)(shape,prior_type=prior_type,em_stepsize=em_stepsize,max_rank=max_rank,initialization_method='nn',target_stddev=target_stddev,learned_scale=False,eta=eta)
 
-        self.max_q = 2.0**(bit-1)-1.0
-        self.min_q = -2.0**(bit-1)
-        self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+        # self.max_q = 2.0**(bit-1)-1.0
+        # self.min_q = -2.0**(bit-1)
+        # self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
 
         self.scale_w = nn.Parameter(torch.FloatTensor([scale_w]))
         self.scale_b = nn.Parameter(torch.FloatTensor([scale_b]))
@@ -259,8 +269,8 @@ class Q_TensorizedLinear(nn.Linear):
         
         Q_factors = []        
         for U in self.tensor.factors:
-            Q_factors.append(scale.apply(U,self.scale_w,self.quant,self.min_q,self.max_q))
-        Q_bias = nn.Parameter(scale.apply(self.bias,self.scale_b,self.quant,self.min_q,self.max_q))
+            Q_factors.append(scale.apply(U,self.scale_w,self.bit))
+        Q_bias = nn.Parameter(scale.apply(self.bias,self.scale_b,self.bit))
         
         return F.linear(input,self.tensor.full_from_factors(Q_factors).reshape([self.out_features,self.in_features]),Q_bias)
 
@@ -293,16 +303,18 @@ class Quantized_conv2d(nn.Conv2d):
         self.dilation = dilation
         self.groups = groups
 
-        self.max_q = 2.0**(bit-1)-1.0
-        self.min_q = -2.0**(bit-1)
-        self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+        self.bit = bit
+
+        # self.max_q = 2.0**(bit-1)-1.0
+        # self.min_q = -2.0**(bit-1)
+        # self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
 
         self.scale_w = nn.Parameter(torch.FloatTensor([scale_w]))
         self.scale_b = nn.Parameter(torch.FloatTensor([scale_b]))
        
 
     def forward(self, input):
-        self.weight = scale.apply(self.weight,self.scale_w,self.quant,self.min_q,self.max_q)
-        self.bias = scale.apply(self.bias,self.scale_b,self.quant,self.min_q,self.max_q)
+        self.weight = scale.apply(self.weight,self.scale_w,self.bit)
+        self.bias = scale.apply(self.bias,self.scale_b,self.bit)
         
         return F.conv2d(input,self.weight,self.bias,stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)

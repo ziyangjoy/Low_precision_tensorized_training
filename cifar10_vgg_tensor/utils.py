@@ -4,12 +4,13 @@
 """
 
 import math
+from tensor_layers import TensorizedLinear
 from tensor_layers.layers import ScaleLayer, Q_TensorizedLinear
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
 import torch.nn.functional as F
-from tensor_layers import TensorizedLinear
+
 import qtorch
 from qtorch import FixedPoint, FloatingPoint
 from qtorch.quant import Quantizer
