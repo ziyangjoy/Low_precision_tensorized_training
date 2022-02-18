@@ -4,7 +4,6 @@ import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 from qtorch.quant import fixed_point_quantize, block_quantize, float_quantize
-
 class scale(torch.autograd.Function):
     """
     We can implement our own custom autograd Functions by subclassing
@@ -13,13 +12,17 @@ class scale(torch.autograd.Function):
     """
 
     @staticmethod
-    def forward(ctx, input, scale, quant, min_q, max_q):
+    def forward(ctx, input, scale, bit):
         """
         In the forward pass we receive a Tensor containing the input and return
         a Tensor containing the output. ctx is a context object that can be used
         to stash information for backward computation. You can cache arbitrary
         objects for use in the backward pass using the ctx.save_for_backward method.
         """
+        max_q = 2.0**(bit-1)-1.0
+        min_q = -2.0**(bit-1)
+        quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+
         ctx.save_for_backward(input, scale)
         ctx.quant = quant
         ctx.input_div_scale = input/scale
@@ -45,19 +48,19 @@ class scale(torch.autograd.Function):
         return grad_input, grad_scale, None, None, None
     
 f = scale.apply
-bit = 8
+bit = 4
 q_max = 2.0**(bit-1)-1.0
 q_min = -2.0**(bit-1)
 quant = lambda x : fixed_point_quantize(x, wl=8, fl=0, rounding="nearest")
 
 scale = torch.tensor(.3, requires_grad=True)
 input = torch.zeros(3,3,3)
-input[0,0,0] = 00
+input[0,0,0] = -200
 input[0,0,1] = 300
 
 input.requires_grad = True
 
-input_q = f(input,scale,quant,q_min,q_max)
+input_q = f(input,scale,bit)
 
 print(input_q)
 
