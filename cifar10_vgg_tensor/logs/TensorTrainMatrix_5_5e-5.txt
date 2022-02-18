@@ -1,0 +1,1040 @@
+Files already downloaded and verified
+VGG_tensor_LP(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Quantizer()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace=True)
+    (7): Quantizer()
+    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (9): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (10): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (11): ReLU(inplace=True)
+    (12): Quantizer()
+    (13): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (14): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (15): ReLU(inplace=True)
+    (16): Quantizer()
+    (17): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (18): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (19): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): ReLU(inplace=True)
+    (21): Quantizer()
+    (22): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (23): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): ReLU(inplace=True)
+    (25): Quantizer()
+    (26): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (27): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): ReLU(inplace=True)
+    (29): Quantizer()
+    (30): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (31): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): ReLU(inplace=True)
+    (33): Quantizer()
+    (34): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (35): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (36): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (37): ReLU(inplace=True)
+    (38): Quantizer()
+    (39): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (40): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (41): ReLU(inplace=True)
+    (42): Quantizer()
+    (43): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (44): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (45): ReLU(inplace=True)
+    (46): Quantizer()
+    (47): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (48): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (49): ReLU(inplace=True)
+    (50): Quantizer()
+    (51): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (52): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (53): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): ReLU(inplace=True)
+    (55): Quantizer()
+    (56): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (57): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): ReLU(inplace=True)
+    (59): Quantizer()
+    (60): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (61): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): ReLU(inplace=True)
+    (63): Quantizer()
+    (64): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (65): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): ReLU(inplace=True)
+    (67): Quantizer()
+    (68): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (fc1): TensorizedLinear(
+    in_features=512, out_features=512, bias=True
+    (tensor): TensorTrainMatrix(
+      (trainable_variables): ParameterList(
+          (0): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+          (1): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+          (2): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+          (3): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+          (4): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+          (5): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+          (6): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+          (7): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+          (8): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+          (9): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+          (10): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+      )
+    )
+  )
+  (fc2): TensorizedLinear(
+    in_features=512, out_features=512, bias=True
+    (tensor): TensorTrainMatrix(
+      (trainable_variables): ParameterList(
+          (0): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+          (1): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+          (2): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+          (3): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+          (4): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+          (5): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+          (6): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+          (7): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+          (8): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+          (9): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+          (10): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+      )
+    )
+  )
+  (fc3): TensorizedLinear(
+    in_features=512, out_features=10, bias=True
+    (tensor): TensorTrainMatrix(
+      (trainable_variables): ParameterList(
+          (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x2x5 (GPU 0)]
+          (1): Parameter containing: [torch.cuda.FloatTensor of size 5x32x5x1 (GPU 0)]
+          (2): Parameter containing: [torch.cuda.FloatTensor of size 1x16x2x5 (GPU 0)]
+          (3): Parameter containing: [torch.cuda.FloatTensor of size 5x32x5x1 (GPU 0)]
+          (4): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+      )
+    )
+  )
+  (dropout): Dropout(p=0.5, inplace=False)
+  (relu): ReLU()
+  (quant): Quantizer()
+  (classifier): Sequential(
+    (0): Dropout(p=0.5, inplace=False)
+    (1): TensorizedLinear(
+      in_features=512, out_features=512, bias=True
+      (tensor): TensorTrainMatrix(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+        )
+      )
+    )
+    (2): ReLU(inplace=True)
+    (3): Quantizer()
+    (4): Dropout(p=0.5, inplace=False)
+    (5): TensorizedLinear(
+      in_features=512, out_features=512, bias=True
+      (tensor): TensorTrainMatrix(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x5 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x5 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 5x8x8x5 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 5x4x4x1 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+        )
+      )
+    )
+    (6): ReLU(inplace=True)
+    (7): Quantizer()
+    (8): TensorizedLinear(
+      in_features=512, out_features=10, bias=True
+      (tensor): TensorTrainMatrix(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x2x5 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 5x32x5x1 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 1x16x2x5 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 5x32x5x1 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 5 (GPU 0)]
+        )
+      )
+    )
+  )
+)
+Train Epoch: 1 [0/50000 (0%)]	Loss: 2.306560
+Train Epoch: 1 [31200/50000 (100%)]	Loss: 1.655429
+Epoch train time 29.53
+
+Test set: Average loss: 1.7792, Accuracy: 3239/10000 (32%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 2 [0/50000 (0%)]	Loss: 1.567261
+Train Epoch: 2 [31200/50000 (100%)]	Loss: 1.564279
+Epoch train time 28.37
+
+Test set: Average loss: 1.6147, Accuracy: 3741/10000 (37%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 3 [0/50000 (0%)]	Loss: 1.595941
+Train Epoch: 3 [31200/50000 (100%)]	Loss: 1.268210
+Epoch train time 28.36
+
+Test set: Average loss: 1.4326, Accuracy: 4887/10000 (49%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 4 [0/50000 (0%)]	Loss: 1.342032
+Train Epoch: 4 [31200/50000 (100%)]	Loss: 0.904513
+Epoch train time 28.33
+
+Test set: Average loss: 1.0244, Accuracy: 6342/10000 (63%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 5 [0/50000 (0%)]	Loss: 1.163344
+Train Epoch: 5 [31200/50000 (100%)]	Loss: 0.886670
+Epoch train time 28.33
+
+Test set: Average loss: 0.9536, Accuracy: 6760/10000 (68%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 6 [0/50000 (0%)]	Loss: 0.958612
+Train Epoch: 6 [31200/50000 (100%)]	Loss: 0.920153
+Epoch train time 28.34
+
+Test set: Average loss: 0.8286, Accuracy: 7202/10000 (72%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 7 [0/50000 (0%)]	Loss: 0.819355
+Train Epoch: 7 [31200/50000 (100%)]	Loss: 0.771154
+Epoch train time 28.32
+
+Test set: Average loss: 0.8128, Accuracy: 7289/10000 (73%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 8 [0/50000 (0%)]	Loss: 0.722973
+Train Epoch: 8 [31200/50000 (100%)]	Loss: 0.613709
+Epoch train time 28.37
+
+Test set: Average loss: 0.8473, Accuracy: 7378/10000 (74%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 9 [0/50000 (0%)]	Loss: 0.692865
+Train Epoch: 9 [31200/50000 (100%)]	Loss: 0.667643
+Epoch train time 28.32
+
+Test set: Average loss: 0.7077, Accuracy: 7761/10000 (78%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 10 [0/50000 (0%)]	Loss: 0.570121
+Train Epoch: 10 [31200/50000 (100%)]	Loss: 0.644386
+Epoch train time 28.33
+
+Test set: Average loss: 0.6640, Accuracy: 7892/10000 (79%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 11 [0/50000 (0%)]	Loss: 0.446190
+Train Epoch: 11 [31200/50000 (100%)]	Loss: 0.842159
+Epoch train time 28.34
+
+Test set: Average loss: 0.5945, Accuracy: 8087/10000 (81%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 12 [0/50000 (0%)]	Loss: 0.432169
+Train Epoch: 12 [31200/50000 (100%)]	Loss: 0.351275
+Epoch train time 28.33
+
+Test set: Average loss: 0.5894, Accuracy: 8135/10000 (81%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 13 [0/50000 (0%)]	Loss: 0.490713
+Train Epoch: 13 [31200/50000 (100%)]	Loss: 0.798965
+Epoch train time 27.92
+
+Test set: Average loss: 0.5124, Accuracy: 8350/10000 (84%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 14 [0/50000 (0%)]	Loss: 0.522327
+Train Epoch: 14 [31200/50000 (100%)]	Loss: 0.500916
+Epoch train time 27.76
+
+Test set: Average loss: 0.6086, Accuracy: 8145/10000 (81%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 15 [0/50000 (0%)]	Loss: 0.468237
+Train Epoch: 15 [31200/50000 (100%)]	Loss: 0.495474
+Epoch train time 27.89
+
+Test set: Average loss: 0.5377, Accuracy: 8341/10000 (83%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 16 [0/50000 (0%)]	Loss: 0.374391
+Train Epoch: 16 [31200/50000 (100%)]	Loss: 0.358493
+Epoch train time 27.85
+
+Test set: Average loss: 0.4962, Accuracy: 8422/10000 (84%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 17 [0/50000 (0%)]	Loss: 0.361070
+Train Epoch: 17 [31200/50000 (100%)]	Loss: 0.436925
+Epoch train time 27.82
+
+Test set: Average loss: 0.4962, Accuracy: 8448/10000 (84%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 18 [0/50000 (0%)]	Loss: 0.549219
+Train Epoch: 18 [31200/50000 (100%)]	Loss: 0.369600
+Epoch train time 27.73
+
+Test set: Average loss: 0.4965, Accuracy: 8478/10000 (85%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 19 [0/50000 (0%)]	Loss: 0.534383
+Train Epoch: 19 [31200/50000 (100%)]	Loss: 0.454349
+Epoch train time 27.66
+
+Test set: Average loss: 0.5317, Accuracy: 8351/10000 (84%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 20 [0/50000 (0%)]	Loss: 0.312833
+Train Epoch: 20 [31200/50000 (100%)]	Loss: 0.282376
+Epoch train time 27.66
+
+Test set: Average loss: 0.4535, Accuracy: 8498/10000 (85%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 21 [0/50000 (0%)]	Loss: 0.286539
+Train Epoch: 21 [31200/50000 (100%)]	Loss: 0.255516
+Epoch train time 27.67
+
+Test set: Average loss: 0.4427, Accuracy: 8604/10000 (86%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 22 [0/50000 (0%)]	Loss: 0.319746
+Train Epoch: 22 [31200/50000 (100%)]	Loss: 0.391777
+Epoch train time 27.67
+
+Test set: Average loss: 0.5085, Accuracy: 8457/10000 (85%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 23 [0/50000 (0%)]	Loss: 0.479718
+Train Epoch: 23 [31200/50000 (100%)]	Loss: 0.308578
+Epoch train time 27.65
+
+Test set: Average loss: 0.4735, Accuracy: 8494/10000 (85%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 24 [0/50000 (0%)]	Loss: 0.262993
+Train Epoch: 24 [31200/50000 (100%)]	Loss: 0.379896
+Epoch train time 27.75
+
+Test set: Average loss: 0.4469, Accuracy: 8646/10000 (86%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 25 [0/50000 (0%)]	Loss: 0.406187
+Train Epoch: 25 [31200/50000 (100%)]	Loss: 0.366210
+Epoch train time 27.81
+
+Test set: Average loss: 0.4413, Accuracy: 8628/10000 (86%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 26 [0/50000 (0%)]	Loss: 0.389187
+Train Epoch: 26 [31200/50000 (100%)]	Loss: 0.464054
+Epoch train time 27.73
+
+Test set: Average loss: 0.4642, Accuracy: 8553/10000 (86%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 27 [0/50000 (0%)]	Loss: 0.253551
+Train Epoch: 27 [31200/50000 (100%)]	Loss: 0.335535
+Epoch train time 27.92
+
+Test set: Average loss: 0.4050, Accuracy: 8749/10000 (87%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 28 [0/50000 (0%)]	Loss: 0.166213
+Train Epoch: 28 [31200/50000 (100%)]	Loss: 0.376851
+Epoch train time 27.99
+
+Test set: Average loss: 0.4330, Accuracy: 8727/10000 (87%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 29 [0/50000 (0%)]	Loss: 0.307164
+Train Epoch: 29 [31200/50000 (100%)]	Loss: 0.236339
+Epoch train time 28.26
+
+Test set: Average loss: 0.4171, Accuracy: 8730/10000 (87%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 30 [0/50000 (0%)]	Loss: 0.223735
+Train Epoch: 30 [31200/50000 (100%)]	Loss: 0.278908
+Epoch train time 27.89
+
+Test set: Average loss: 0.4446, Accuracy: 8627/10000 (86%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 31 [0/50000 (0%)]	Loss: 0.226381
+Train Epoch: 31 [31200/50000 (100%)]	Loss: 0.354907
+Epoch train time 27.86
+
+Test set: Average loss: 0.4256, Accuracy: 8721/10000 (87%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 32 [0/50000 (0%)]	Loss: 0.252693
+Train Epoch: 32 [31200/50000 (100%)]	Loss: 0.440998
+Epoch train time 27.77
+
+Test set: Average loss: 0.3916, Accuracy: 8768/10000 (88%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 33 [0/50000 (0%)]	Loss: 0.201945
+Train Epoch: 33 [31200/50000 (100%)]	Loss: 0.354429
+Epoch train time 27.73
+
+Test set: Average loss: 0.4397, Accuracy: 8639/10000 (86%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 34 [0/50000 (0%)]	Loss: 0.242615
+Train Epoch: 34 [31200/50000 (100%)]	Loss: 0.164630
+Epoch train time 27.72
+
+Test set: Average loss: 0.4361, Accuracy: 8735/10000 (87%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 35 [0/50000 (0%)]	Loss: 0.191267
+Train Epoch: 35 [31200/50000 (100%)]	Loss: 0.284594
+Epoch train time 27.77
+
+Test set: Average loss: 0.4115, Accuracy: 8779/10000 (88%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 36 [0/50000 (0%)]	Loss: 0.134373
+Train Epoch: 36 [31200/50000 (100%)]	Loss: 0.226848
+Epoch train time 27.71
+
+Test set: Average loss: 0.3990, Accuracy: 8808/10000 (88%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 37 [0/50000 (0%)]	Loss: 0.263050
+Train Epoch: 37 [31200/50000 (100%)]	Loss: 0.396850
+Epoch train time 27.74
+
+Test set: Average loss: 0.4123, Accuracy: 8758/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 38 [0/50000 (0%)]	Loss: 0.360251
+Train Epoch: 38 [31200/50000 (100%)]	Loss: 0.275052
+Epoch train time 27.81
+
+Test set: Average loss: 0.4368, Accuracy: 8743/10000 (87%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 39 [0/50000 (0%)]	Loss: 0.132108
+Train Epoch: 39 [31200/50000 (100%)]	Loss: 0.207766
+Epoch train time 27.76
+
+Test set: Average loss: 0.4415, Accuracy: 8743/10000 (87%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 40 [0/50000 (0%)]	Loss: 0.142277
+Train Epoch: 40 [31200/50000 (100%)]	Loss: 0.139891
+Epoch train time 27.74
+
+Test set: Average loss: 0.4250, Accuracy: 8764/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 41 [0/50000 (0%)]	Loss: 0.229779
+Train Epoch: 41 [31200/50000 (100%)]	Loss: 0.329703
+Epoch train time 27.95
+
+Test set: Average loss: 0.4248, Accuracy: 8756/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 42 [0/50000 (0%)]	Loss: 0.139292
+Train Epoch: 42 [31200/50000 (100%)]	Loss: 0.364806
+Epoch train time 27.86
+
+Test set: Average loss: 0.4570, Accuracy: 8762/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 43 [0/50000 (0%)]	Loss: 0.313363
+Train Epoch: 43 [31200/50000 (100%)]	Loss: 0.112869
+Epoch train time 27.90
+
+Test set: Average loss: 0.4102, Accuracy: 8847/10000 (88%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 44 [0/50000 (0%)]	Loss: 0.230664
+Train Epoch: 44 [31200/50000 (100%)]	Loss: 0.168984
+Epoch train time 27.76
+
+Test set: Average loss: 0.4373, Accuracy: 8810/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 45 [0/50000 (0%)]	Loss: 0.216249
+Train Epoch: 45 [31200/50000 (100%)]	Loss: 0.306569
+Epoch train time 27.74
+
+Test set: Average loss: 0.4510, Accuracy: 8777/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 46 [0/50000 (0%)]	Loss: 0.247271
+Train Epoch: 46 [31200/50000 (100%)]	Loss: 0.141313
+Epoch train time 28.08
+
+Test set: Average loss: 0.4019, Accuracy: 8840/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 47 [0/50000 (0%)]	Loss: 0.165399
+Train Epoch: 47 [31200/50000 (100%)]	Loss: 0.094803
+Epoch train time 27.97
+
+Test set: Average loss: 0.4176, Accuracy: 8852/10000 (89%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 48 [0/50000 (0%)]	Loss: 0.077468
+Train Epoch: 48 [31200/50000 (100%)]	Loss: 0.206283
+Epoch train time 27.70
+
+Test set: Average loss: 0.4379, Accuracy: 8769/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 49 [0/50000 (0%)]	Loss: 0.129898
+Train Epoch: 49 [31200/50000 (100%)]	Loss: 0.055343
+Epoch train time 27.74
+
+Test set: Average loss: 0.4309, Accuracy: 8794/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 50 [0/50000 (0%)]	Loss: 0.227140
+Train Epoch: 50 [31200/50000 (100%)]	Loss: 0.213392
+Epoch train time 27.66
+
+Test set: Average loss: 0.4564, Accuracy: 8747/10000 (87%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 51 [0/50000 (0%)]	Loss: 0.115182
+Train Epoch: 51 [31200/50000 (100%)]	Loss: 0.205803
+Epoch train time 27.80
+
+Test set: Average loss: 0.4708, Accuracy: 8765/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 52 [0/50000 (0%)]	Loss: 0.122265
+Train Epoch: 52 [31200/50000 (100%)]	Loss: 0.125255
+Epoch train time 27.69
+
+Test set: Average loss: 0.4414, Accuracy: 8801/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 53 [0/50000 (0%)]	Loss: 0.199854
+Train Epoch: 53 [31200/50000 (100%)]	Loss: 0.272152
+Epoch train time 27.64
+
+Test set: Average loss: 0.4041, Accuracy: 8867/10000 (89%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 54 [0/50000 (0%)]	Loss: 0.132956
+Train Epoch: 54 [31200/50000 (100%)]	Loss: 0.197255
+Epoch train time 27.67
+
+Test set: Average loss: 0.4313, Accuracy: 8844/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 55 [0/50000 (0%)]	Loss: 0.218138
+Train Epoch: 55 [31200/50000 (100%)]	Loss: 0.191561
+Epoch train time 27.65
+
+Test set: Average loss: 0.4351, Accuracy: 8789/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 56 [0/50000 (0%)]	Loss: 0.109960
+Train Epoch: 56 [31200/50000 (100%)]	Loss: 0.256719
+Epoch train time 27.69
+
+Test set: Average loss: 0.4433, Accuracy: 8819/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 57 [0/50000 (0%)]	Loss: 0.120748
+Train Epoch: 57 [31200/50000 (100%)]	Loss: 0.333080
+Epoch train time 27.71
+
+Test set: Average loss: 0.4205, Accuracy: 8828/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 58 [0/50000 (0%)]	Loss: 0.111193
+Train Epoch: 58 [31200/50000 (100%)]	Loss: 0.088747
+Epoch train time 27.68
+
+Test set: Average loss: 0.4444, Accuracy: 8867/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 59 [0/50000 (0%)]	Loss: 0.128341
+Train Epoch: 59 [31200/50000 (100%)]	Loss: 0.112862
+Epoch train time 27.74
+
+Test set: Average loss: 0.4326, Accuracy: 8861/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 60 [0/50000 (0%)]	Loss: 0.207699
+Train Epoch: 60 [31200/50000 (100%)]	Loss: 0.163405
+Epoch train time 27.85
+
+Test set: Average loss: 0.4342, Accuracy: 8860/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 61 [0/50000 (0%)]	Loss: 0.129314
+Train Epoch: 61 [31200/50000 (100%)]	Loss: 0.216739
+Epoch train time 27.69
+
+Test set: Average loss: 0.4630, Accuracy: 8756/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 62 [0/50000 (0%)]	Loss: 0.082748
+Train Epoch: 62 [31200/50000 (100%)]	Loss: 0.114950
+Epoch train time 27.84
+
+Test set: Average loss: 0.4201, Accuracy: 8874/10000 (89%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 63 [0/50000 (0%)]	Loss: 0.073855
+Train Epoch: 63 [31200/50000 (100%)]	Loss: 0.104437
+Epoch train time 27.65
+
+Test set: Average loss: 0.4377, Accuracy: 8851/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 64 [0/50000 (0%)]	Loss: 0.114233
+Train Epoch: 64 [31200/50000 (100%)]	Loss: 0.080141
+Epoch train time 27.68
+
+Test set: Average loss: 0.4694, Accuracy: 8828/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 65 [0/50000 (0%)]	Loss: 0.210708
+Train Epoch: 65 [31200/50000 (100%)]	Loss: 0.192979
+Epoch train time 27.65
+
+Test set: Average loss: 0.4591, Accuracy: 8779/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 66 [0/50000 (0%)]	Loss: 0.072918
+Train Epoch: 66 [31200/50000 (100%)]	Loss: 0.182439
+Epoch train time 27.68
+
+Test set: Average loss: 0.4379, Accuracy: 8857/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 67 [0/50000 (0%)]	Loss: 0.104949
+Train Epoch: 67 [31200/50000 (100%)]	Loss: 0.076715
+Epoch train time 27.69
+
+Test set: Average loss: 0.4602, Accuracy: 8813/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 68 [0/50000 (0%)]	Loss: 0.085653
+Train Epoch: 68 [31200/50000 (100%)]	Loss: 0.148815
+Epoch train time 27.72
+
+Test set: Average loss: 0.4425, Accuracy: 8855/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 69 [0/50000 (0%)]	Loss: 0.090451
+Train Epoch: 69 [31200/50000 (100%)]	Loss: 0.254508
+Epoch train time 27.66
+
+Test set: Average loss: 0.4544, Accuracy: 8841/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 70 [0/50000 (0%)]	Loss: 0.050844
+Train Epoch: 70 [31200/50000 (100%)]	Loss: 0.057225
+Epoch train time 27.75
+
+Test set: Average loss: 0.4965, Accuracy: 8811/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 71 [0/50000 (0%)]	Loss: 0.087814
+Train Epoch: 71 [31200/50000 (100%)]	Loss: 0.169969
+Epoch train time 27.82
+
+Test set: Average loss: 0.4547, Accuracy: 8889/10000 (89%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 72 [0/50000 (0%)]	Loss: 0.119835
+Train Epoch: 72 [31200/50000 (100%)]	Loss: 0.211021
+Epoch train time 28.04
+
+Test set: Average loss: 0.4485, Accuracy: 8889/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 73 [0/50000 (0%)]	Loss: 0.047777
+Train Epoch: 73 [31200/50000 (100%)]	Loss: 0.095466
+Epoch train time 27.63
+
+Test set: Average loss: 0.4292, Accuracy: 8886/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 74 [0/50000 (0%)]	Loss: 0.117090
+Train Epoch: 74 [31200/50000 (100%)]	Loss: 0.130113
+Epoch train time 27.78
+
+Test set: Average loss: 0.4746, Accuracy: 8825/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 75 [0/50000 (0%)]	Loss: 0.094115
+Train Epoch: 75 [31200/50000 (100%)]	Loss: 0.072140
+Epoch train time 27.75
+
+Test set: Average loss: 0.4666, Accuracy: 8836/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 76 [0/50000 (0%)]	Loss: 0.088449
+Train Epoch: 76 [31200/50000 (100%)]	Loss: 0.063730
+Epoch train time 27.79
+
+Test set: Average loss: 0.4670, Accuracy: 8877/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 77 [0/50000 (0%)]	Loss: 0.038848
+Train Epoch: 77 [31200/50000 (100%)]	Loss: 0.079579
+Epoch train time 27.67
+
+Test set: Average loss: 0.4420, Accuracy: 8887/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 78 [0/50000 (0%)]	Loss: 0.095146
+Train Epoch: 78 [31200/50000 (100%)]	Loss: 0.150058
+Epoch train time 27.68
+
+Test set: Average loss: 0.4599, Accuracy: 8898/10000 (89%)
+
+current model saved
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 79 [0/50000 (0%)]	Loss: 0.175656
+Train Epoch: 79 [31200/50000 (100%)]	Loss: 0.189870
+Epoch train time 27.62
+
+Test set: Average loss: 0.4715, Accuracy: 8863/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 80 [0/50000 (0%)]	Loss: 0.113564
+Train Epoch: 80 [31200/50000 (100%)]	Loss: 0.144967
+Epoch train time 27.64
+
+Test set: Average loss: 0.4643, Accuracy: 8856/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 81 [0/50000 (0%)]	Loss: 0.137071
+Train Epoch: 81 [31200/50000 (100%)]	Loss: 0.152737
+Epoch train time 27.66
+
+Test set: Average loss: 0.4898, Accuracy: 8828/10000 (88%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 82 [0/50000 (0%)]	Loss: 0.090623
+Train Epoch: 82 [31200/50000 (100%)]	Loss: 0.144260
+Epoch train time 27.72
+
+Test set: Average loss: 0.5032, Accuracy: 8856/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******
+Train Epoch: 83 [0/50000 (0%)]	Loss: 0.074207
+Train Epoch: 83 [31200/50000 (100%)]	Loss: 0.093704
+Epoch train time 27.68
+
+Test set: Average loss: 0.4508, Accuracy: 8895/10000 (89%)
+
+******Tensor Ranks*******
+[5, 5, 5]
+[5, 5, 5]
+******End epoch stats*******

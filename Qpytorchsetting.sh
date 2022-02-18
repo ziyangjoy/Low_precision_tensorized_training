@@ -1,0 +1,3 @@
+export PATH=/usr/local/cuda-11.2/bin:/usr/bin:/bin:/home/ziyangjoy/anaconda3/envs/LP_TD/bin:/home/ziyangjoy/anaconda3/condabin:/home/ziyangjoy/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/home/ziyangjoy/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/usr/games:/usr/local/games:/snap/bin:
+
+CUDA_HOME=/usr/local/cuda-11.2
