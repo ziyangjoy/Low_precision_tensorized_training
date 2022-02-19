@@ -153,6 +153,10 @@ def main():
         print(model.fc1.scale_w)
         print(model.fc2.scale_w)
 
+        # print(model.fc1.output)
+        # print(model.fc1.Q_factors[0])
+
+
         # print(model.fc1.tensor.factor_distributions[0].mean)
         # print(model.features[0])
         # print(model.fc1.tensor.factors[0])

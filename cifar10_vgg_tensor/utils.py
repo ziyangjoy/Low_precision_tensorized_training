@@ -301,22 +301,24 @@ class VGG_tensor_LP_scale(nn.Module):
         shape3 = [[16,32], [2,5]]
 
 
-        bit = 4
+        bit_w = 2
+        bit_b = 4
         s = 2**-3
 
 
-        fc1 = Q_TensorizedLinear(512, 512, shape=shape1, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize, bit = bit, scale_w = s, scale_b = s)
-        fc2 = Q_TensorizedLinear(512, 512, shape=shape2, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize, bit = bit, scale_w = s, scale_b = s)
+        fc1 = Q_TensorizedLinear(512, 512, shape=shape1, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize, bit_w = bit_w, bit_b = bit_b, scale_w = s, scale_b = s)
+        fc2 = Q_TensorizedLinear(512, 512, shape=shape2, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize, bit_w = bit_w, bit_b = bit_b, scale_w = s, scale_b = s)
         fc3 = TensorizedLinear(512, 10, shape=shape3, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize)
 
         self.add_module('fc1',fc1)
         self.add_module('fc2',fc2)
         self.add_module('fc3',fc3)
 
+        bit_s = 3
         s = 2**-3
-        sc1 = ScaleLayer(scale = s, bit = bit)
+        sc1 = ScaleLayer(scale = s, bit = bit_s)
         self.add_module('sc1',sc1)
-        sc2 = ScaleLayer(scale = s, bit = bit)
+        sc2 = ScaleLayer(scale = s, bit = bit_s)
         self.add_module('sc2',sc2)
 
 
