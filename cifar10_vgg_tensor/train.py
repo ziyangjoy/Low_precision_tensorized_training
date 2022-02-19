@@ -26,6 +26,7 @@ def main():
     type=str)
     parser.add_argument('--lp', type=bool, default=True)
     parser.add_argument('--scale', type=bool, default=True)
+    parser.add_argument('--bit', type=int, default=4)
 
     parser.add_argument('--batch-size', type=int, default=128, metavar='N',
                         help='input batch size for training (default: 128)')
@@ -60,14 +61,14 @@ def main():
 
     torch.manual_seed(args.seed)
 
-    device = torch.device("cuda:1" if use_cuda else "cpu")
+    device = torch.device("cuda" if use_cuda else "cpu")
 
     train_kwargs = {'batch_size': args.batch_size}
     test_kwargs = {'batch_size': args.test_batch_size}
 
 
     if use_cuda:
-        cuda_kwargs = {'num_workers': 1,
+        cuda_kwargs = {'num_workers': 0,
                        'pin_memory': True,
                        'shuffle': True}
         train_kwargs.update(cuda_kwargs)
@@ -123,10 +124,10 @@ def main():
 
     path = './saved_models/cifar10_vgg16_tensor'
     if args.lp:
-        path = path + '_LPbit8'
+        path = path + '_LP'
         # path = './saved_models/' + 'cifar10_vgg19_tensor_LP_' + 'rank' +str(args.rank) + '_' + current_time + '.pt'
     if args.scale:
-        path = path + '_scale'
+        path = path + '_scale_int' + str(args.bit)
     path = path + '_rank' +str(args.rank) + '_' + current_time + '.pt'
 
 
@@ -152,6 +153,8 @@ def main():
         # print(model.sc2.scale)
         print(model.fc1.scale_w)
         print(model.fc2.scale_w)
+
+        # print(model.fc1.Q_factors[0])
 
         # print(model.fc1.tensor.factor_distributions[0].mean)
         # print(model.features[0])

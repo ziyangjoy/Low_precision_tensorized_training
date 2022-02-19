@@ -5,6 +5,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 from qtorch.quant import fixed_point_quantize, block_quantize, float_quantize
 
+# from tensor_layers.layers import ScaleLayer, Q_TensorizedLinear
+
+
 class scale(torch.autograd.Function):
     """
     We can implement our own custom autograd Functions by subclassing
@@ -67,3 +70,7 @@ loss.backward()
 print(scale.grad)
 print(input.grad)
 
+input = torch.randn(4,3)
+weight = torch.randn(1,3)
+output = F.linear(input,weight)
+print(output.shape)

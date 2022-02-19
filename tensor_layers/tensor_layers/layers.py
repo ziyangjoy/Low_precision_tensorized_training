@@ -260,7 +260,7 @@ class Q_TensorizedLinear(nn.Linear):
         Q_factors = []        
         for U in self.tensor.factors:
             Q_factors.append(scale.apply(U,self.scale_w,self.quant,self.min_q,self.max_q))
-        Q_bias = nn.Parameter(scale.apply(self.bias,self.scale_b,self.quant,self.min_q,self.max_q))
+        Q_bias = (scale.apply(self.bias,self.scale_b,self.quant,self.min_q,self.max_q))
         
         return F.linear(input,self.tensor.full_from_factors(Q_factors).reshape([self.out_features,self.in_features]),Q_bias)
 

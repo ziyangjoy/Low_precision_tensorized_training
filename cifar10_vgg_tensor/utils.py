@@ -20,12 +20,15 @@ __all__ = ["VGG16LP", "VGG16BNLP", "VGG19LP", "VGG19BNLP"]
 
 
 forward_num = FixedPoint(wl=8, fl=5)
+forward_num_tensor = FixedPoint(wl=4, fl=2)
 # forward_num = FixedPoint(wl=4, fl=1)
 
 # forward_num = FloatingPoint(exp=8, man=23)
 
 backward_num = FloatingPoint(exp=8, man=23)
 Q = lambda: Quantizer(forward_number=forward_num, backward_number=backward_num,
+              forward_rounding="nearest", backward_rounding="stochastic")
+Q_tensor = lambda: Quantizer(forward_number=forward_num_tensor, backward_number=backward_num,
               forward_rounding="nearest", backward_rounding="stochastic")
 
 
@@ -216,7 +219,7 @@ class VGG_LP(nn.Module):
 
 
 class VGG_tensor_LP(nn.Module):
-    def __init__(self, args, quant=Q, num_classes=10, depth=16, batch_norm=True):
+    def __init__(self, args, quant=Q, quant_tensor=Q_tensor, num_classes=10, depth=16, batch_norm=True):
 
         super(VGG_tensor_LP, self).__init__()
         depth = 16
@@ -232,15 +235,12 @@ class VGG_tensor_LP(nn.Module):
         self.add_module('fc2',fc2)
         self.add_module('fc3',fc3)
 
-        sc1 = ScaleLayer(init_value=0.1)
-        self.add_module('sc1',sc1)
-        sc2 = ScaleLayer(init_value=0.1)
-        self.add_module('sc2',sc2)
 
 
         self.dropout = nn.Dropout()
         self.relu = nn.ReLU()
         self.quant = quant()
+        self.quant_tensor = quant_tensor()
 
 
         self.classifier = nn.Sequential(
@@ -272,14 +272,14 @@ class VGG_tensor_LP(nn.Module):
         x = scale * x
         # x = self.sc1(x)
         x = self.relu(x)
-        x = self.quant(x)
+        x = self.quant_tensor(x)
 
         x = self.dropout(x)
         x = self.fc2(x)
         # x = self.sc2(x)
         x = scale * x
         x = self.relu(x)
-        x = self.quant(x)
+        x = self.quant_tensor(x)
 
         x = self.fc3(x)
 
@@ -300,7 +300,8 @@ class VGG_tensor_LP_scale(nn.Module):
         shape3 = [[16,32], [2,5]]
 
 
-        bit = 8
+        bit = args.bit
+        bit = 4
         s = 2**-3
 
 
@@ -312,6 +313,7 @@ class VGG_tensor_LP_scale(nn.Module):
         self.add_module('fc2',fc2)
         self.add_module('fc3',fc3)
 
+        bit = 4
         s = 2**-3
         sc1 = ScaleLayer(scale = s, bit = bit)
         self.add_module('sc1',sc1)
@@ -456,8 +458,10 @@ def train(args, model, device, train_loader, optimizer, epoch):
         optimizer.step()
 
         #quantize weights
-        # weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="stochastic")
-        weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="nearest")
+        weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="stochastic")
+        weight_quant_tensor = lambda x : fixed_point_quantize(x, wl=4, fl=2, rounding="stochastic")
+
+        # weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="nearest")
 
         if args.lp:
             saved_first = []
@@ -475,7 +479,7 @@ def train(args, model, device, train_loader, optimizer, epoch):
                         pass
                     else:
                         for p in layer.tensor.factors:
-                            p.data = weight_quant(p.data).data
+                            p.data = weight_quant_tensor(p.data).data
                         
                 elif not hasattr(layer, "scale"):
                     for p in layer.parameters():
