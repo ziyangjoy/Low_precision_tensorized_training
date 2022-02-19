@@ -457,8 +457,8 @@ def train(args, model, device, train_loader, optimizer, epoch):
         optimizer.step()
 
         #quantize weights
-        # weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="stochastic")
-        weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="nearest")
+        weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="stochastic")
+        # weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="nearest")
 
         if args.lp:
             saved_first = []
