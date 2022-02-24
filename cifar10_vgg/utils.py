@@ -23,7 +23,7 @@ forward_num = FixedPoint(wl=8, fl=5)
 
 backward_num = FloatingPoint(exp=8, man=23)
 Q = lambda: Quantizer(forward_number=forward_num, backward_number=backward_num,
-              forward_rounding="stochastic", backward_rounding="stochastic")
+              forward_rounding="nearest", backward_rounding="stochastic")
 
 
 def get_kl_loss(model, args, epoch):
@@ -47,11 +47,18 @@ def get_kl_loss(model, args, epoch):
 def get_net(args):
     if args.model_type in ['CP','TensorTrain','TensorTrainMatrix','Tucker']:
         if args.lp:
-            # return VGG_LP(args,quant = Q)
-            return VGG_LP(args,quant = Q)
+            if args.tensorized:
+                return VGG_tensor_LP(args,quant = Q)
+            else:
+                return VGG_LP(args,quant = Q)
+            
         else:
             # return VGG_LP(args, quant = Q)
-            return VGG(args,quant = None)
+            # return VGG(args,quant = None)
+            if args.tensorized:
+                return VGG_tensor(args,quant = None)
+            else:
+                return VGG(args,quant = None)
     else:
         return VGG_LP(args,quant = Q)
 
@@ -183,7 +190,115 @@ class VGG_LP(nn.Module):
         return x
 
 
-    
+
+class VGG_tensor_LP(nn.Module):
+    def __init__(self, args, quant=Q, num_classes=10, depth=16, batch_norm=True):
+
+        super(VGG_tensor_LP, self).__init__()
+        depth = 16
+        self.features = make_layers(cfg[depth], quant, batch_norm, quantized=args.lp)
+        shape1 = [[4,4,8,4], [4,4,8,4]]
+        shape2 = [[4,4,8,4], [4,4,8,4]]
+        shape3 = [[16,32], [2,5]]
+        fc1 = TensorizedLinear(512, 512, shape=shape1, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize)
+        fc2 = TensorizedLinear(512, 512, shape=shape2, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize)
+        fc3 = TensorizedLinear(512, 10, shape=shape3, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize)
+
+        self.add_module('fc1',fc1)
+        self.add_module('fc2',fc2)
+        self.add_module('fc3',fc3)
+
+
+
+        self.dropout = nn.Dropout()
+        self.relu = nn.ReLU()
+        self.quant = quant()
+
+
+        self.classifier = nn.Sequential(
+            nn.Dropout(),
+            fc1,
+            nn.ReLU(True),
+            quant(),
+            nn.Dropout(),
+            fc2,
+            nn.ReLU(True),
+            quant(),
+            fc3,
+        )
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, math.sqrt(2.0 / n))
+                m.bias.data.zero_()
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        
+        # rewrite self.classifier to add scaling part
+        scale = 0.1
+
+        x = self.dropout(x)
+        x = self.fc1(x)
+        x = scale * x
+        # x = self.sc1(x)
+        x = self.relu(x)
+        x = self.quant(x)
+
+        x = self.dropout(x)
+        x = self.fc2(x)
+        # x = self.sc2(x)
+        x = scale * x
+        x = self.relu(x)
+        # x = self.quant(x)
+
+        x = self.fc3(x)
+
+
+        # x = self.classifier(x)
+        x = F.log_softmax(x, dim=1)
+        return x
+
+
+class VGG_tensor(nn.Module):
+    def __init__(self, args, quant=Q, num_classes=10, depth=16, batch_norm=True):
+
+        super(VGG_tensor, self).__init__()
+        self.features = make_layers(cfg[depth], quant, batch_norm, quantized=args.lp)
+        shape1 = [[4,4,8,4], [4,4,8,4]]
+        shape2 = [[4,4,8,4], [4,4,8,4]]
+        shape3 = [[16,32], [2,5]]
+        fc1 = TensorizedLinear(512, 512, shape=shape1, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize)
+        fc2 = TensorizedLinear(512, 512, shape=shape2, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize)
+        fc3 = TensorizedLinear(512, 10, shape=shape3, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize)
+
+        self.add_module('fc1',fc1)
+        self.add_module('fc2',fc2)
+        self.add_module('fc3',fc3)
+
+
+        self.classifier = nn.Sequential(
+            nn.Dropout(),
+            fc1,
+            nn.ReLU(True),
+            nn.Dropout(),
+            fc2,
+            nn.ReLU(True),
+            fc3,
+        )
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, math.sqrt(2.0 / n))
+                m.bias.data.zero_()
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        x = self.classifier(x)
+        x = F.log_softmax(x, dim=1)
+        return x
 # class Base:
 #     base = VGG
 #     args = list()
@@ -243,23 +358,59 @@ def train(args, model, device, train_loader, optimizer, epoch):
         #quantize weights
         weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="stochastic")
 
-
         if args.lp:
             saved_first = []
             for p in model.features[0].parameters():
                 saved_first.append(p.data)
 
             saved_last = []
-            for p in model.classifier[-1].parameters():
-                saved_last.append(p.data)
+            if args.tensorized:
+                for p in model.fc3.parameters():
+                    saved_last.append(p.data)
+            else:
+                for p in model.classifier[-1].parameters():
+                    saved_last.append(p.data)
         
-            for group in optimizer.param_groups:
-                for p in group["params"]:
-                    p.data = weight_quant(p.data).data
+            
+            for layer in model.features:
+                if hasattr(layer, "tensor"):
+                    if args.scale:
+                        pass
+                    else:
+                        for p in layer.tensor.factors:
+                            p.data = weight_quant(p.data).data
+                        
+                elif not hasattr(layer, "scale"):
+                    for p in layer.parameters():
+                        if p.requires_grad:
+                            p.data = weight_quant(p.data).data
+            
             for p,q in zip(model.features[0].parameters(), saved_first):
                 p.data = q
-            for p,q in zip(model.classifier[-1].parameters(), saved_last):
-                p.data = q
+            if args.tensorized:
+                for p,q in zip(model.fc3.parameters(), saved_last):
+                    p.data = q
+            else:
+                for p,q in zip(model.classifier[-1].parameters(), saved_last):
+                    p.data = q
+
+        # if args.lp:
+        #     saved_first = []
+        #     for p in model.features[0].parameters():
+        #         saved_first.append(p.data)
+
+        #     saved_last = []
+        #     for p in model.classifier[-1].parameters():
+        #         saved_last.append(p.data)
+        
+        #     for group in optimizer.param_groups:
+        #         for p in group["params"]:
+        #             p.data = weight_quant(p.data).data
+        #     for p,q in zip(model.features[0].parameters(), saved_first):
+        #         p.data = q
+        #     for p,q in zip(model.classifier[-1].parameters(), saved_last):
+        #         p.data = q
+    
         if batch_idx % args.log_interval == 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
@@ -284,6 +435,8 @@ def test(model, device, test_loader):
             correct += pred.eq(target.view_as(pred)).sum().item()
 
     test_loss /= len(test_loader.dataset)
-    print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
+    print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
+    
+    return correct/len(test_loader.dataset)

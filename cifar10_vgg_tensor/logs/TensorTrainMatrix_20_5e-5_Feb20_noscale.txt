@@ -1,0 +1,1366 @@
+Files already downloaded and verified
+VGG_tensor_LP_scale(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x8x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x8x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (7): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x8x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x8x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (8): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (9): ReLU(inplace=True)
+    (10): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x8x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x8x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (11): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): ReLU(inplace=True)
+    (13): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (14): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x8x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (15): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): ReLU(inplace=True)
+    (17): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (18): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (19): ReLU(inplace=True)
+    (20): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (21): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): ReLU(inplace=True)
+    (23): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (24): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (25): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): ReLU(inplace=True)
+    (27): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (28): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (29): ReLU(inplace=True)
+    (30): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (31): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): ReLU(inplace=True)
+    (33): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (34): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (35): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): ReLU(inplace=True)
+    (37): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (38): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (39): ReLU(inplace=True)
+    (40): Tensorizedconv2d(
+      (tensor): TensorTrain(
+        (trainable_variables): ParameterList(
+            (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (1): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (2): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (3): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (4): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (5): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (6): Parameter containing: [torch.cuda.FloatTensor of size 1x16x30 (GPU 0)]
+            (7): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (8): Parameter containing: [torch.cuda.FloatTensor of size 30x16x30 (GPU 0)]
+            (9): Parameter containing: [torch.cuda.FloatTensor of size 30x32x30 (GPU 0)]
+            (10): Parameter containing: [torch.cuda.FloatTensor of size 30x3x30 (GPU 0)]
+            (11): Parameter containing: [torch.cuda.FloatTensor of size 30x3x1 (GPU 0)]
+            (12): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (13): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (14): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (15): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+            (16): Parameter containing: [torch.cuda.FloatTensor of size 30 (GPU 0)]
+        )
+      )
+    )
+    (41): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): ReLU(inplace=True)
+    (43): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (fc1): Q_TensorizedLinear(
+    in_features=512, out_features=512, bias=True
+    (tensor): TensorTrainMatrix(
+      (trainable_variables): ParameterList(
+          (0): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x20 (GPU 0)]
+          (1): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x20 (GPU 0)]
+          (2): Parameter containing: [torch.cuda.FloatTensor of size 20x8x8x20 (GPU 0)]
+          (3): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x1 (GPU 0)]
+          (4): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x20 (GPU 0)]
+          (5): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x20 (GPU 0)]
+          (6): Parameter containing: [torch.cuda.FloatTensor of size 20x8x8x20 (GPU 0)]
+          (7): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x1 (GPU 0)]
+          (8): Parameter containing: [torch.cuda.FloatTensor of size 20 (GPU 0)]
+          (9): Parameter containing: [torch.cuda.FloatTensor of size 20 (GPU 0)]
+          (10): Parameter containing: [torch.cuda.FloatTensor of size 20 (GPU 0)]
+      )
+    )
+  )
+  (fc2): Q_TensorizedLinear(
+    in_features=512, out_features=512, bias=True
+    (tensor): TensorTrainMatrix(
+      (trainable_variables): ParameterList(
+          (0): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x20 (GPU 0)]
+          (1): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x20 (GPU 0)]
+          (2): Parameter containing: [torch.cuda.FloatTensor of size 20x8x8x20 (GPU 0)]
+          (3): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x1 (GPU 0)]
+          (4): Parameter containing: [torch.cuda.FloatTensor of size 1x4x4x20 (GPU 0)]
+          (5): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x20 (GPU 0)]
+          (6): Parameter containing: [torch.cuda.FloatTensor of size 20x8x8x20 (GPU 0)]
+          (7): Parameter containing: [torch.cuda.FloatTensor of size 20x4x4x1 (GPU 0)]
+          (8): Parameter containing: [torch.cuda.FloatTensor of size 20 (GPU 0)]
+          (9): Parameter containing: [torch.cuda.FloatTensor of size 20 (GPU 0)]
+          (10): Parameter containing: [torch.cuda.FloatTensor of size 20 (GPU 0)]
+      )
+    )
+  )
+  (fc3): TensorizedLinear(
+    in_features=512, out_features=10, bias=True
+    (tensor): TensorTrainMatrix(
+      (trainable_variables): ParameterList(
+          (0): Parameter containing: [torch.cuda.FloatTensor of size 1x16x2x20 (GPU 0)]
+          (1): Parameter containing: [torch.cuda.FloatTensor of size 20x32x5x1 (GPU 0)]
+          (2): Parameter containing: [torch.cuda.FloatTensor of size 1x16x2x20 (GPU 0)]
+          (3): Parameter containing: [torch.cuda.FloatTensor of size 20x32x5x1 (GPU 0)]
+          (4): Parameter containing: [torch.cuda.FloatTensor of size 20 (GPU 0)]
+      )
+    )
+  )
+  (sc1): ScaleLayer()
+  (sc2): ScaleLayer()
+  (dropout): Dropout(p=0.5, inplace=False)
+  (relu): ReLU()
+  (quant): Quantizer()
+)
+Train Epoch: 1 [0/50000 (0%)]	Loss: 2.485211
+Train Epoch: 1 [31200/50000 (100%)]	Loss: 1.804437
+Epoch train time 43.41
+
+Test set: Average loss: 1.7741, Accuracy: 3390/10000 (34%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 2 [0/50000 (0%)]	Loss: 1.662494
+Train Epoch: 2 [31200/50000 (100%)]	Loss: 1.257608
+Epoch train time 42.56
+
+Test set: Average loss: 1.4479, Accuracy: 4999/10000 (50%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 3 [0/50000 (0%)]	Loss: 1.451703
+Train Epoch: 3 [31200/50000 (100%)]	Loss: 0.896205
+Epoch train time 42.62
+
+Test set: Average loss: 1.0899, Accuracy: 6202/10000 (62%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 4 [0/50000 (0%)]	Loss: 1.066888
+Train Epoch: 4 [31200/50000 (100%)]	Loss: 1.006167
+Epoch train time 42.23
+
+Test set: Average loss: 1.0067, Accuracy: 6535/10000 (65%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 5 [0/50000 (0%)]	Loss: 0.959825
+Train Epoch: 5 [31200/50000 (100%)]	Loss: 1.022343
+Epoch train time 42.24
+
+Test set: Average loss: 0.9150, Accuracy: 6918/10000 (69%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 6 [0/50000 (0%)]	Loss: 0.959534
+Train Epoch: 6 [31200/50000 (100%)]	Loss: 0.954492
+Epoch train time 42.27
+
+Test set: Average loss: 0.8111, Accuracy: 7319/10000 (73%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 7 [0/50000 (0%)]	Loss: 0.761790
+Train Epoch: 7 [31200/50000 (100%)]	Loss: 0.856572
+Epoch train time 42.21
+
+Test set: Average loss: 0.7752, Accuracy: 7402/10000 (74%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 8 [0/50000 (0%)]	Loss: 0.889830
+Train Epoch: 8 [31200/50000 (100%)]	Loss: 0.659202
+Epoch train time 51.43
+
+Test set: Average loss: 0.6864, Accuracy: 7668/10000 (77%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 9 [0/50000 (0%)]	Loss: 0.885943
+Train Epoch: 9 [31200/50000 (100%)]	Loss: 0.637695
+Epoch train time 46.77
+
+Test set: Average loss: 0.7381, Accuracy: 7592/10000 (76%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 10 [0/50000 (0%)]	Loss: 0.761554
+Train Epoch: 10 [31200/50000 (100%)]	Loss: 0.609622
+Epoch train time 46.49
+
+Test set: Average loss: 0.7213, Accuracy: 7568/10000 (76%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 11 [0/50000 (0%)]	Loss: 0.696656
+Train Epoch: 11 [31200/50000 (100%)]	Loss: 0.655912
+Epoch train time 46.39
+
+Test set: Average loss: 0.6372, Accuracy: 7871/10000 (79%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 12 [0/50000 (0%)]	Loss: 0.598626
+Train Epoch: 12 [31200/50000 (100%)]	Loss: 0.554845
+Epoch train time 46.34
+
+Test set: Average loss: 0.6603, Accuracy: 7858/10000 (79%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 13 [0/50000 (0%)]	Loss: 0.571789
+Train Epoch: 13 [31200/50000 (100%)]	Loss: 0.805891
+Epoch train time 47.11
+
+Test set: Average loss: 0.6775, Accuracy: 7782/10000 (78%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 14 [0/50000 (0%)]	Loss: 0.638410
+Train Epoch: 14 [31200/50000 (100%)]	Loss: 0.670996
+Epoch train time 46.10
+
+Test set: Average loss: 0.6057, Accuracy: 8006/10000 (80%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 15 [0/50000 (0%)]	Loss: 0.585910
+Train Epoch: 15 [31200/50000 (100%)]	Loss: 0.437975
+Epoch train time 45.83
+
+Test set: Average loss: 0.5720, Accuracy: 8096/10000 (81%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 16 [0/50000 (0%)]	Loss: 0.741464
+Train Epoch: 16 [31200/50000 (100%)]	Loss: 0.884543
+Epoch train time 45.01
+
+Test set: Average loss: 0.5835, Accuracy: 8088/10000 (81%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 17 [0/50000 (0%)]	Loss: 0.360163
+Train Epoch: 17 [31200/50000 (100%)]	Loss: 0.581822
+Epoch train time 44.89
+
+Test set: Average loss: 0.5558, Accuracy: 8145/10000 (81%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 18 [0/50000 (0%)]	Loss: 0.418307
+Train Epoch: 18 [31200/50000 (100%)]	Loss: 0.676203
+Epoch train time 44.71
+
+Test set: Average loss: 0.5768, Accuracy: 8149/10000 (81%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 19 [0/50000 (0%)]	Loss: 0.560039
+Train Epoch: 19 [31200/50000 (100%)]	Loss: 0.482922
+Epoch train time 45.49
+
+Test set: Average loss: 0.5657, Accuracy: 8244/10000 (82%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 20 [0/50000 (0%)]	Loss: 0.399310
+Train Epoch: 20 [31200/50000 (100%)]	Loss: 0.635442
+Epoch train time 45.99
+
+Test set: Average loss: 0.5867, Accuracy: 8119/10000 (81%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 21 [0/50000 (0%)]	Loss: 0.581189
+Train Epoch: 21 [31200/50000 (100%)]	Loss: 0.324008
+Epoch train time 46.03
+
+Test set: Average loss: 0.5523, Accuracy: 8151/10000 (82%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 22 [0/50000 (0%)]	Loss: 0.481219
+Train Epoch: 22 [31200/50000 (100%)]	Loss: 0.424965
+Epoch train time 48.81
+
+Test set: Average loss: 0.5037, Accuracy: 8370/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 23 [0/50000 (0%)]	Loss: 0.462981
+Train Epoch: 23 [31200/50000 (100%)]	Loss: 0.569830
+Epoch train time 44.90
+
+Test set: Average loss: 0.5113, Accuracy: 8346/10000 (83%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 24 [0/50000 (0%)]	Loss: 0.367985
+Train Epoch: 24 [31200/50000 (100%)]	Loss: 0.450276
+Epoch train time 45.13
+
+Test set: Average loss: 0.4873, Accuracy: 8395/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 25 [0/50000 (0%)]	Loss: 0.724399
+Train Epoch: 25 [31200/50000 (100%)]	Loss: 0.341453
+Epoch train time 45.30
+
+Test set: Average loss: 0.4852, Accuracy: 8433/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 26 [0/50000 (0%)]	Loss: 0.465640
+Train Epoch: 26 [31200/50000 (100%)]	Loss: 0.395333
+Epoch train time 45.89
+
+Test set: Average loss: 0.5304, Accuracy: 8287/10000 (83%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 27 [0/50000 (0%)]	Loss: 0.448022
+Train Epoch: 27 [31200/50000 (100%)]	Loss: 0.399490
+Epoch train time 49.49
+
+Test set: Average loss: 0.5049, Accuracy: 8379/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 28 [0/50000 (0%)]	Loss: 0.377839
+Train Epoch: 28 [31200/50000 (100%)]	Loss: 0.481302
+Epoch train time 46.06
+
+Test set: Average loss: 0.4737, Accuracy: 8467/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 29 [0/50000 (0%)]	Loss: 0.340816
+Train Epoch: 29 [31200/50000 (100%)]	Loss: 0.492314
+Epoch train time 45.90
+
+Test set: Average loss: 0.5768, Accuracy: 8171/10000 (82%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 30 [0/50000 (0%)]	Loss: 0.324745
+Train Epoch: 30 [31200/50000 (100%)]	Loss: 0.437738
+Epoch train time 43.68
+
+Test set: Average loss: 0.4500, Accuracy: 8525/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 31 [0/50000 (0%)]	Loss: 0.441216
+Train Epoch: 31 [31200/50000 (100%)]	Loss: 0.491692
+Epoch train time 42.01
+
+Test set: Average loss: 0.4795, Accuracy: 8406/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 32 [0/50000 (0%)]	Loss: 0.567365
+Train Epoch: 32 [31200/50000 (100%)]	Loss: 0.480102
+Epoch train time 48.22
+
+Test set: Average loss: 0.4625, Accuracy: 8453/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 33 [0/50000 (0%)]	Loss: 0.422286
+Train Epoch: 33 [31200/50000 (100%)]	Loss: 0.556540
+Epoch train time 46.05
+
+Test set: Average loss: 0.5142, Accuracy: 8334/10000 (83%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 34 [0/50000 (0%)]	Loss: 0.377276
+Train Epoch: 34 [31200/50000 (100%)]	Loss: 0.431884
+Epoch train time 46.17
+
+Test set: Average loss: 0.4754, Accuracy: 8496/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 35 [0/50000 (0%)]	Loss: 0.340096
+Train Epoch: 35 [31200/50000 (100%)]	Loss: 0.556483
+Epoch train time 46.21
+
+Test set: Average loss: 0.4755, Accuracy: 8427/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 36 [0/50000 (0%)]	Loss: 0.454116
+Train Epoch: 36 [31200/50000 (100%)]	Loss: 0.336300
+Epoch train time 46.34
+
+Test set: Average loss: 0.4407, Accuracy: 8538/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 37 [0/50000 (0%)]	Loss: 0.378178
+Train Epoch: 37 [31200/50000 (100%)]	Loss: 0.370750
+Epoch train time 46.33
+
+Test set: Average loss: 0.4314, Accuracy: 8581/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 38 [0/50000 (0%)]	Loss: 0.361141
+Train Epoch: 38 [31200/50000 (100%)]	Loss: 0.372790
+Epoch train time 46.25
+
+Test set: Average loss: 0.4956, Accuracy: 8396/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 39 [0/50000 (0%)]	Loss: 0.501302
+Train Epoch: 39 [31200/50000 (100%)]	Loss: 0.286884
+Epoch train time 46.27
+
+Test set: Average loss: 0.4491, Accuracy: 8547/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 40 [0/50000 (0%)]	Loss: 0.298393
+Train Epoch: 40 [31200/50000 (100%)]	Loss: 0.532966
+Epoch train time 46.06
+
+Test set: Average loss: 0.4735, Accuracy: 8446/10000 (84%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 41 [0/50000 (0%)]	Loss: 0.371364
+Train Epoch: 41 [31200/50000 (100%)]	Loss: 0.565041
+Epoch train time 45.89
+
+Test set: Average loss: 0.4536, Accuracy: 8594/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 42 [0/50000 (0%)]	Loss: 0.387562
+Train Epoch: 42 [31200/50000 (100%)]	Loss: 0.334196
+Epoch train time 46.65
+
+Test set: Average loss: 0.4369, Accuracy: 8594/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 43 [0/50000 (0%)]	Loss: 0.300789
+Train Epoch: 43 [31200/50000 (100%)]	Loss: 0.329808
+Epoch train time 47.18
+
+Test set: Average loss: 0.4296, Accuracy: 8620/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 44 [0/50000 (0%)]	Loss: 0.317374
+Train Epoch: 44 [31200/50000 (100%)]	Loss: 0.480918
+Epoch train time 47.24
+
+Test set: Average loss: 0.4130, Accuracy: 8639/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 45 [0/50000 (0%)]	Loss: 0.259376
+Train Epoch: 45 [31200/50000 (100%)]	Loss: 0.480723
+Epoch train time 47.12
+
+Test set: Average loss: 0.4007, Accuracy: 8663/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 46 [0/50000 (0%)]	Loss: 0.305578
+Train Epoch: 46 [31200/50000 (100%)]	Loss: 0.257685
+Epoch train time 47.17
+
+Test set: Average loss: 0.4885, Accuracy: 8462/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 47 [0/50000 (0%)]	Loss: 0.530688
+Train Epoch: 47 [31200/50000 (100%)]	Loss: 0.394248
+Epoch train time 48.20
+
+Test set: Average loss: 0.4227, Accuracy: 8625/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 48 [0/50000 (0%)]	Loss: 0.333930
+Train Epoch: 48 [31200/50000 (100%)]	Loss: 0.567945
+Epoch train time 44.67
+
+Test set: Average loss: 0.4287, Accuracy: 8630/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 49 [0/50000 (0%)]	Loss: 0.261039
+Train Epoch: 49 [31200/50000 (100%)]	Loss: 0.465895
+Epoch train time 45.42
+
+Test set: Average loss: 0.3981, Accuracy: 8681/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 50 [0/50000 (0%)]	Loss: 0.299774
+Train Epoch: 50 [31200/50000 (100%)]	Loss: 0.363887
+Epoch train time 45.78
+
+Test set: Average loss: 0.5011, Accuracy: 8492/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 51 [0/50000 (0%)]	Loss: 0.290037
+Train Epoch: 51 [31200/50000 (100%)]	Loss: 0.549146
+Epoch train time 46.10
+
+Test set: Average loss: 0.4611, Accuracy: 8543/10000 (85%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 52 [0/50000 (0%)]	Loss: 0.375657
+Train Epoch: 52 [31200/50000 (100%)]	Loss: 0.282034
+Epoch train time 46.13
+
+Test set: Average loss: 0.4341, Accuracy: 8596/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 53 [0/50000 (0%)]	Loss: 0.439922
+Train Epoch: 53 [31200/50000 (100%)]	Loss: 0.264081
+Epoch train time 47.36
+
+Test set: Average loss: 0.4019, Accuracy: 8689/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 54 [0/50000 (0%)]	Loss: 0.384114
+Train Epoch: 54 [31200/50000 (100%)]	Loss: 0.385449
+Epoch train time 46.06
+
+Test set: Average loss: 0.4184, Accuracy: 8682/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 55 [0/50000 (0%)]	Loss: 0.203803
+Train Epoch: 55 [31200/50000 (100%)]	Loss: 0.256709
+Epoch train time 46.15
+
+Test set: Average loss: 0.4044, Accuracy: 8713/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 56 [0/50000 (0%)]	Loss: 0.353708
+Train Epoch: 56 [31200/50000 (100%)]	Loss: 0.217229
+Epoch train time 46.21
+
+Test set: Average loss: 0.4032, Accuracy: 8730/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 57 [0/50000 (0%)]	Loss: 0.187943
+Train Epoch: 57 [31200/50000 (100%)]	Loss: 0.290079
+Epoch train time 46.16
+
+Test set: Average loss: 0.3749, Accuracy: 8789/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 58 [0/50000 (0%)]	Loss: 0.234336
+Train Epoch: 58 [31200/50000 (100%)]	Loss: 0.237871
+Epoch train time 46.59
+
+Test set: Average loss: 0.4414, Accuracy: 8587/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 59 [0/50000 (0%)]	Loss: 0.372335
+Train Epoch: 59 [31200/50000 (100%)]	Loss: 0.232414
+Epoch train time 48.24
+
+Test set: Average loss: 0.4237, Accuracy: 8643/10000 (86%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 60 [0/50000 (0%)]	Loss: 0.328571
+Train Epoch: 60 [31200/50000 (100%)]	Loss: 0.289040
+Epoch train time 48.18
+
+Test set: Average loss: 0.3933, Accuracy: 8745/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 61 [0/50000 (0%)]	Loss: 0.235180
+Train Epoch: 61 [31200/50000 (100%)]	Loss: 0.248487
+Epoch train time 48.20
+
+Test set: Average loss: 0.4302, Accuracy: 8729/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 62 [0/50000 (0%)]	Loss: 0.175444
+Train Epoch: 62 [31200/50000 (100%)]	Loss: 0.461242
+Epoch train time 48.08
+
+Test set: Average loss: 0.4050, Accuracy: 8694/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 63 [0/50000 (0%)]	Loss: 0.271910
+Train Epoch: 63 [31200/50000 (100%)]	Loss: 0.292618
+Epoch train time 48.14
+
+Test set: Average loss: 0.3946, Accuracy: 8696/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 64 [0/50000 (0%)]	Loss: 0.345863
+Train Epoch: 64 [31200/50000 (100%)]	Loss: 0.271025
+Epoch train time 48.06
+
+Test set: Average loss: 0.3944, Accuracy: 8770/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 65 [0/50000 (0%)]	Loss: 0.240129
+Train Epoch: 65 [31200/50000 (100%)]	Loss: 0.381393
+Epoch train time 48.08
+
+Test set: Average loss: 0.3876, Accuracy: 8698/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 66 [0/50000 (0%)]	Loss: 0.236179
+Train Epoch: 66 [31200/50000 (100%)]	Loss: 0.355657
+Epoch train time 48.10
+
+Test set: Average loss: 0.3881, Accuracy: 8786/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 67 [0/50000 (0%)]	Loss: 0.224561
+Train Epoch: 67 [31200/50000 (100%)]	Loss: 0.199530
+Epoch train time 48.24
+
+Test set: Average loss: 0.3930, Accuracy: 8752/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 68 [0/50000 (0%)]	Loss: 0.216154
+Train Epoch: 68 [31200/50000 (100%)]	Loss: 0.275355
+Epoch train time 47.13
+
+Test set: Average loss: 0.3868, Accuracy: 8838/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 69 [0/50000 (0%)]	Loss: 0.272553
+Train Epoch: 69 [31200/50000 (100%)]	Loss: 0.285919
+Epoch train time 46.28
+
+Test set: Average loss: 0.3772, Accuracy: 8794/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 70 [0/50000 (0%)]	Loss: 0.232067
+Train Epoch: 70 [31200/50000 (100%)]	Loss: 0.180840
+Epoch train time 46.23
+
+Test set: Average loss: 0.3766, Accuracy: 8829/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 71 [0/50000 (0%)]	Loss: 0.287813
+Train Epoch: 71 [31200/50000 (100%)]	Loss: 0.225514
+Epoch train time 46.21
+
+Test set: Average loss: 0.3837, Accuracy: 8828/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 72 [0/50000 (0%)]	Loss: 0.324906
+Train Epoch: 72 [31200/50000 (100%)]	Loss: 0.363264
+Epoch train time 46.24
+
+Test set: Average loss: 0.3950, Accuracy: 8783/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 73 [0/50000 (0%)]	Loss: 0.252024
+Train Epoch: 73 [31200/50000 (100%)]	Loss: 0.348000
+Epoch train time 45.84
+
+Test set: Average loss: 0.3784, Accuracy: 8829/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 74 [0/50000 (0%)]	Loss: 0.207823
+Train Epoch: 74 [31200/50000 (100%)]	Loss: 0.322945
+Epoch train time 44.55
+
+Test set: Average loss: 0.3985, Accuracy: 8757/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 75 [0/50000 (0%)]	Loss: 0.197696
+Train Epoch: 75 [31200/50000 (100%)]	Loss: 0.316683
+Epoch train time 45.13
+
+Test set: Average loss: 0.3752, Accuracy: 8799/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 76 [0/50000 (0%)]	Loss: 0.215068
+Train Epoch: 76 [31200/50000 (100%)]	Loss: 0.325362
+Epoch train time 45.63
+
+Test set: Average loss: 0.4098, Accuracy: 8703/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 77 [0/50000 (0%)]	Loss: 0.209200
+Train Epoch: 77 [31200/50000 (100%)]	Loss: 0.264775
+Epoch train time 45.26
+
+Test set: Average loss: 0.4107, Accuracy: 8792/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 78 [0/50000 (0%)]	Loss: 0.230517
+Train Epoch: 78 [31200/50000 (100%)]	Loss: 0.256194
+Epoch train time 45.25
+
+Test set: Average loss: 0.3788, Accuracy: 8806/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 79 [0/50000 (0%)]	Loss: 0.255666
+Train Epoch: 79 [31200/50000 (100%)]	Loss: 0.225421
+Epoch train time 45.46
+
+Test set: Average loss: 0.3822, Accuracy: 8862/10000 (89%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 80 [0/50000 (0%)]	Loss: 0.194706
+Train Epoch: 80 [31200/50000 (100%)]	Loss: 0.228489
+Epoch train time 49.16
+
+Test set: Average loss: 0.4184, Accuracy: 8741/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 81 [0/50000 (0%)]	Loss: 0.281201
+Train Epoch: 81 [31200/50000 (100%)]	Loss: 0.331906
+Epoch train time 45.90
+
+Test set: Average loss: 0.3582, Accuracy: 8908/10000 (89%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 82 [0/50000 (0%)]	Loss: 0.147425
+Train Epoch: 82 [31200/50000 (100%)]	Loss: 0.269230
+Epoch train time 45.95
+
+Test set: Average loss: 0.3956, Accuracy: 8812/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 83 [0/50000 (0%)]	Loss: 0.183477
+Train Epoch: 83 [31200/50000 (100%)]	Loss: 0.181918
+Epoch train time 46.23
+
+Test set: Average loss: 0.3709, Accuracy: 8776/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 84 [0/50000 (0%)]	Loss: 0.142258
+Train Epoch: 84 [31200/50000 (100%)]	Loss: 0.267341
+Epoch train time 46.13
+
+Test set: Average loss: 0.3617, Accuracy: 8838/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 85 [0/50000 (0%)]	Loss: 0.238046
+Train Epoch: 85 [31200/50000 (100%)]	Loss: 0.287085
+Epoch train time 46.09
+
+Test set: Average loss: 0.3748, Accuracy: 8801/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 86 [0/50000 (0%)]	Loss: 0.313214
+Train Epoch: 86 [31200/50000 (100%)]	Loss: 0.261003
+Epoch train time 46.11
+
+Test set: Average loss: 0.3777, Accuracy: 8806/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 87 [0/50000 (0%)]	Loss: 0.255737
+Train Epoch: 87 [31200/50000 (100%)]	Loss: 0.219802
+Epoch train time 46.16
+
+Test set: Average loss: 0.3668, Accuracy: 8840/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 88 [0/50000 (0%)]	Loss: 0.265151
+Train Epoch: 88 [31200/50000 (100%)]	Loss: 0.281904
+Epoch train time 45.98
+
+Test set: Average loss: 0.3785, Accuracy: 8811/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 89 [0/50000 (0%)]	Loss: 0.190901
+Train Epoch: 89 [31200/50000 (100%)]	Loss: 0.261968
+Epoch train time 44.36
+
+Test set: Average loss: 0.3618, Accuracy: 8846/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 90 [0/50000 (0%)]	Loss: 0.150950
+Train Epoch: 90 [31200/50000 (100%)]	Loss: 0.268884
+Epoch train time 45.31
+
+Test set: Average loss: 0.3974, Accuracy: 8748/10000 (87%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 91 [0/50000 (0%)]	Loss: 0.152467
+Train Epoch: 91 [31200/50000 (100%)]	Loss: 0.360720
+Epoch train time 45.82
+
+Test set: Average loss: 0.3559, Accuracy: 8914/10000 (89%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 92 [0/50000 (0%)]	Loss: 0.320701
+Train Epoch: 92 [31200/50000 (100%)]	Loss: 0.205375
+Epoch train time 46.06
+
+Test set: Average loss: 0.3822, Accuracy: 8813/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 93 [0/50000 (0%)]	Loss: 0.126938
+Train Epoch: 93 [31200/50000 (100%)]	Loss: 0.256228
+Epoch train time 45.80
+
+Test set: Average loss: 0.4057, Accuracy: 8790/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 94 [0/50000 (0%)]	Loss: 0.176294
+Train Epoch: 94 [31200/50000 (100%)]	Loss: 0.317955
+Epoch train time 46.21
+
+Test set: Average loss: 0.3625, Accuracy: 8857/10000 (89%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 95 [0/50000 (0%)]	Loss: 0.208199
+Train Epoch: 95 [31200/50000 (100%)]	Loss: 0.153818
+Epoch train time 44.90
+
+Test set: Average loss: 0.3673, Accuracy: 8861/10000 (89%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 96 [0/50000 (0%)]	Loss: 0.088391
+Train Epoch: 96 [31200/50000 (100%)]	Loss: 0.126950
+Epoch train time 45.02
+
+Test set: Average loss: 0.3775, Accuracy: 8857/10000 (89%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 97 [0/50000 (0%)]	Loss: 0.254629
+Train Epoch: 97 [31200/50000 (100%)]	Loss: 0.210018
+Epoch train time 50.06
+
+Test set: Average loss: 0.4018, Accuracy: 8816/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 98 [0/50000 (0%)]	Loss: 0.131282
+Train Epoch: 98 [31200/50000 (100%)]	Loss: 0.223936
+Epoch train time 42.32
+
+Test set: Average loss: 0.4093, Accuracy: 8815/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 99 [0/50000 (0%)]	Loss: 0.255536
+Train Epoch: 99 [31200/50000 (100%)]	Loss: 0.269060
+Epoch train time 42.20
+
+Test set: Average loss: 0.3847, Accuracy: 8866/10000 (89%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******
+Train Epoch: 100 [0/50000 (0%)]	Loss: 0.134597
+Train Epoch: 100 [31200/50000 (100%)]	Loss: 0.207028
+Epoch train time 42.33
+
+Test set: Average loss: 0.3943, Accuracy: 8828/10000 (88%)
+
+******Tensor Ranks*******
+[20, 20, 20]
+[20, 20, 20]
+******End epoch stats*******

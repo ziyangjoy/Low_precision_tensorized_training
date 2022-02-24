@@ -130,7 +130,8 @@ def main():
     path = path + '_rank' +str(args.rank) + '_' + current_time + '.pt'
 
 
-    max_acc = -1
+    best_acc = -1
+    best_epoch = 1
     args.save_model = False
     for epoch in range(1, args.epochs + 1):
         
@@ -142,16 +143,24 @@ def main():
         
 
         acc = test(model, device, test_loader)
-        if acc>max_acc and args.save_model:
+        if acc>best_acc and args.save_model:
             torch.save(model.state_dict(), path)
             print('current model saved')
-            max_acc = acc
+            best_acc = acc
+        
+        if acc>best_acc:
+            best_acc = acc
+            best_epoch = epoch
+        print('best accuracy=', best_acc)
+        print('best epoch=', best_epoch)
+        print(' ')
 
         # print(model.fc1.tensor.factors[0])
-        print(model.sc1.scale)
+        # print(model.sc1.scale)
         # print(model.sc2.scale)
-        print(model.fc1.scale_w)
-        print(model.fc2.scale_w)
+        # print(model.fc1.scale_w)
+        # print(model.fc2.scale_w)
+        # print(model.features[4].weight)
 
         # print(model.fc1.output)
         # print(model.fc1.Q_factors[0])

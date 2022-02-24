@@ -5,7 +5,7 @@
 
 import math
 from tensor_layers import TensorizedLinear
-from tensor_layers.layers import ScaleLayer, Q_TensorizedLinear
+from tensor_layers.layers import ScaleLayer, Q_TensorizedLinear, Q_conv2d, Tensorizedconv2d, Q_Tensorizedconv2d
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
@@ -88,7 +88,7 @@ def make_layers(cfg, quant, batch_norm=False, quantized = True):
             in_channels = filters
     return nn.Sequential(*layers)
 
-def make_layers_scale(cfg, quant, batch_norm=False, quantized = True, bit=8):
+def make_layers_scale(args,cfg, quant, batch_norm=False, quantized = True, bit_w=8, bit_b=8, bit_s = 8, scale_w = 2**-3, scale_b = 2**-3, scale = 2**-3):
     layers = list()
     in_channels = 3
     n = 1
@@ -98,13 +98,27 @@ def make_layers_scale(cfg, quant, batch_norm=False, quantized = True, bit=8):
         else:
             use_quant = v[-1] != "N"
             filters = int(v) if use_quant else int(v[:-1])
-            conv2d = nn.Conv2d(in_channels, filters, kernel_size=3, padding=1)
-            if batch_norm:
-                layers += [conv2d, nn.BatchNorm2d(filters), nn.ReLU(inplace=True)]
+            
+            if n == 1:
+                Qconv2d = nn.Conv2d(in_channels, filters, kernel_size=3, padding=1)
             else:
-                layers += [conv2d, nn.ReLU(inplace=True)]
+                tensor_type = 'TensorTrain'
+                # Qconv2d = Q_Tensorizedconv2d(in_channels, filters, kernel_size=(3,3), 
+                # padding=1, bit_w = bit_w, bit_b=bit_b, scale_w=scale_w, scale_b=scale_b, max_rank=30, tensor_type=tensor_type)
+
+                # Qconv2d = Tensorizedconv2d(in_channels, filters, kernel_size=(3,3), padding=1, max_rank=30)
+                
+                # Qconv2d = nn.Conv2d(in_channels, filters, kernel_size=3, padding=1)
+
+                Qconv2d = Q_conv2d(in_channels, filters, kernel_size=(3,3), padding=1, bit_w = bit_w, bit_b=bit_b, scale_w=scale_w, scale_b=scale_b)
+            if batch_norm:
+                layers += [Qconv2d, nn.BatchNorm2d(filters), nn.ReLU(inplace=True)]
+            else:
+                layers += [Qconv2d, nn.ReLU(inplace=True)]
             if use_quant and quantized:
-                layers += [quant()]
+                # layers += [quant()]
+                # pass
+                layers += [ScaleLayer(scale = scale, bit=bit_s, half = True)]
             n += 1
             in_channels = filters
     return nn.Sequential(*layers)
@@ -295,15 +309,41 @@ class VGG_tensor_LP_scale(nn.Module):
 
         super(VGG_tensor_LP_scale, self).__init__()
         depth = 16
-        self.features = make_layers(cfg[depth], quant, batch_norm, quantized=args.lp)
+        # settings for 8 bits
+        # s_w = 2**-8
+        # s_b = 2**-2
+        # bit_w = 8
+        # bit_b = 8
+        # bit_s = 8
+        # s = 2**-2
+
+        # settings for 4 bits
+        s_w = 2**-8
+        s_b = 2**-2
+        bit_w = 4
+        bit_b = 8
+        bit_s = 4
+        s = 2**-2
+
+        # settings for 2 bits
+        # s_w = 2**-3
+        # s_b = 2**-2
+        # bit_w = 2
+        # bit_b = 4
+        # bit_s = 3
+        # s = 2**-2
+
+        # batch_norm = False
+        self.features = make_layers_scale(args,cfg[depth], quant, batch_norm = batch_norm, quantized=args.lp, bit_w=bit_w, bit_b=bit_b, bit_s = bit_s, scale = s, scale_w=s_w,scale_b=s_b)
+        # (cfg, quant, batch_norm=False, quantized = True, bit_w=8, bit_b=8, bit_s = 8, scale = 2**-3)
         shape1 = [[4,4,8,4], [4,4,8,4]]
         shape2 = [[4,4,8,4], [4,4,8,4]]
         shape3 = [[16,32], [2,5]]
 
 
-        bit_w = 2
+        bit_w = 4
         bit_b = 4
-        s = 2**-3
+        s = 2**-2
 
 
         fc1 = Q_TensorizedLinear(512, 512, shape=shape1, tensor_type=args.model_type,max_rank=args.rank,em_stepsize=args.em_stepsize, bit_w = bit_w, bit_b = bit_b, scale_w = s, scale_b = s)
@@ -314,8 +354,8 @@ class VGG_tensor_LP_scale(nn.Module):
         self.add_module('fc2',fc2)
         self.add_module('fc3',fc3)
 
-        bit_s = 3
-        s = 2**-3
+        bit_s = 4
+        s = 2**-1
         sc1 = ScaleLayer(scale = s, bit = bit_s)
         self.add_module('sc1',sc1)
         sc2 = ScaleLayer(scale = s, bit = bit_s)
@@ -451,6 +491,7 @@ def train(args, model, device, train_loader, optimizer, epoch):
             ard_loss = get_kl_loss(model,args,epoch)
             loss += ard_loss
         
+        
 
 
         loss.backward()
@@ -462,7 +503,7 @@ def train(args, model, device, train_loader, optimizer, epoch):
         weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="stochastic")
         # weight_quant = lambda x : fixed_point_quantize(x, wl=8, fl=5, rounding="nearest")
 
-        if args.lp:
+        if args.lp and False:
             saved_first = []
             for p in model.features[0].parameters():
                 saved_first.append(p.data)
@@ -515,5 +556,5 @@ def test(model, device, test_loader):
     test_loss /= len(test_loader.dataset)
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
-        100. * correct / len(test_loader.dataset)))
-    return correct
+        100.0 * correct / len(test_loader.dataset)))
+    return correct / len(test_loader.dataset)

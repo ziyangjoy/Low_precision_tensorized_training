@@ -21,7 +21,18 @@ def main():
         default='full',
         choices=['CP', 'TensorTrain', 'TensorTrainMatrix','Tucker','full'],
     type=str)
-    parser.add_argument('--lp', type=bool, default=False)
+    parser.add_argument('--lp', dest = 'lp',action='store_true')
+    parser.add_argument('--no-lp', dest = 'lp',action='store_false')
+    parser.set_defaults(lp=True)
+
+    parser.add_argument('--tensorized', dest = 'tensorized',action='store_true')
+    parser.add_argument('--no-tensorized', dest = 'tensorized',action='store_false')
+    parser.set_defaults(tensorized=True)
+
+    # parser.add_argument('--tensorized', type=bool, default=False,
+    #                     help='Run the tensorized model')
+
+
     parser.add_argument('--batch-size', type=int, default=128, metavar='N',
                         help='input batch size for training (default: 128)')
     parser.add_argument('--rank-loss', type=bool, default=False)
@@ -48,9 +59,12 @@ def main():
                         help='how many batches to wait before logging training status')
     parser.add_argument('--save-model', action='store_true', default=False,
                         help='For Saving the current Model')
-    parser.add_argument('--tensorized', type=bool, default=False,
-                        help='Run the tensorized model')
+
     args = parser.parse_args()
+
+    print(args.lp)
+    print(args.tensorized)
+
     use_cuda = not args.no_cuda and torch.cuda.is_available()
 
     torch.manual_seed(args.seed)
@@ -112,13 +126,22 @@ def main():
         optimizer = OptimLP(optimizer, 
                         weight_quant=None)
 
+    best_acc = -1
+    best_epoch = 1
     for epoch in range(1, args.epochs + 1):
         t = time.time()
         train(args, model, device, train_loader, optimizer, epoch)
         print("Epoch train time {:.2f}".format(time.time()-t))
 
 
-        test(model, device, test_loader)
+        acc = test(model, device, test_loader)
+        if acc>best_acc:
+            best_acc = acc
+            best_epoch = epoch
+        print('best accuracy=', best_acc)
+        print('best epoch=', best_epoch)
+        print(' ')
+
 
         # print(model.features[0])
         # print(model.fc1.tensor.factors[0])

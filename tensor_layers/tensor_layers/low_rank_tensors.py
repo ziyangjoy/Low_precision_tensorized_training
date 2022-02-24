@@ -99,6 +99,9 @@ class CP(LowRankTensor):
     def get_full(self):
         return tl.kruskal_to_tensor((self.weights, self.factors))
 
+    def get_full_factors(self,factors):
+        return tl.kruskal_to_tensor((self.weights,factors))
+
     def get_masked_factors(self):
         return [self.weights*factor for factor in self.factors]
 
@@ -316,6 +319,9 @@ class TensorTrain(LowRankTensor):
             return tl.tt_to_tensor(factors)
         else:
             return tl.tt_to_tensor(self.factors)
+    
+    def get_full_factors(self,factors):
+        return tl.tt_to_tensor(factors)
 
     def get_masked_factors(self):
         factors = [x*y for x,y in zip(self.factors,self.masks)]+[self.masks[-1].view([-1,1,1])*self.factors[-1]]

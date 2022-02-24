@@ -1,3 +1,5 @@
+from ctypes import Union
+import math
 import torch
 import numpy as np
 import torch.nn as nn
@@ -5,8 +7,11 @@ import torch.nn.functional as F
 from .low_rank_tensors import CP,TensorTrain,TensorTrainMatrix,Tucker
 from . import low_rank_tensors
 from .emb_utils import get_cum_prod,tensorized_lookup
+import tensorly as tl
+
 
 from qtorch.quant import fixed_point_quantize, block_quantize, float_quantize
+# from ..common_types import _size_1_t, _size_2_t, _size_3_t
 
 
 class TensorizedLinear(nn.Linear):
@@ -146,6 +151,8 @@ class scale(torch.autograd.Function):
             max_q = 2.0**(bit-1)-1.0
             min_q = -2.0**(bit-1)
             quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+            # quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="stochastic")
+
 
         ctx.save_for_backward(input, scale)
         ctx.quant = quant
@@ -297,32 +304,33 @@ class Q_TensorizedLinear(nn.Linear):
 
 
 
-class Quantized_conv2d(nn.Conv2d):
+class Q_conv2d_old(nn.Conv2d):
     def __init__(self,
                  in_channels,
                  out_channels,
                  kernel_size,
-                 stride=1,
-                 padding=0,
-                 dilation=1,
+                 stride= (1,1),
+                 padding=(0,0),
+                 dilation=(1,1),
                  groups=1,
                  bias = True,
                  padding_mode = 'zeros',
                  device=None,
                  dtype=None,
-                 bit = 8,
+                 bit_w = 8,
+                 bit_b = 8,
                  scale_w = 2**(-5),
                  scale_b = 2**(-5)
     ):
-        super(Quantized_conv2d,self).__init__(in_channels,out_channels,kernel_size,stride,padding,dilation,groups,bias,padding_mode,device,dtype)
+        super(Q_conv2d_old,self).__init__(in_channels,out_channels,kernel_size,stride,padding,dilation,groups,bias,padding_mode,device,dtype)
 
         self.stride = stride
         self.padding = padding 
         self.dilation = dilation
         self.groups = groups
 
-        self.bit = bit
-
+        self.bit_w = bit_w
+        self.bit_b = bit_b
         # self.max_q = 2.0**(bit-1)-1.0
         # self.min_q = -2.0**(bit-1)
         # self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
@@ -332,7 +340,281 @@ class Quantized_conv2d(nn.Conv2d):
        
 
     def forward(self, input):
-        self.weight = scale.apply(self.weight,self.scale_w,self.bit)
-        self.bias = scale.apply(self.bias,self.scale_b,self.bit)
+        Q_weight = scale.apply(self.weight,self.scale_w,self.bit_w)
+        Q_bias = scale.apply(self.bias,self.scale_b,self.bit_b)
         
-        return F.conv2d(input,self.weight,self.bias,stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+        output = F.conv2d(input,Q_weight,bias = None, stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+        output = scale.apply(output,self.scale_b,self.bit_b)
+        # print(output.shape)
+        # print(Q_bias.shape)
+        output = output.transpose(1,3)
+        output = output + Q_bias
+        output = output.transpose(1,3)
+
+        return output
+
+
+class Q_conv2d(nn.Module):
+    def __init__(self,
+                 in_channels,
+                 out_channels,
+                 kernel_size,
+                 stride= (1,1),
+                 padding=(0,0),
+                 dilation=(1,1),
+                 groups=1,
+                 bias = True,
+                 padding_mode = 'zeros',
+                 device=None,
+                 dtype=None,
+                 bit_w = 8,
+                 bit_b = 8,
+                 scale_w = 2**(-5),
+                 scale_b = 2**(-5)
+    ):
+        super(Q_conv2d,self).__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.padding = padding
+        self.dilation = dilation
+        # self.transposed = transposed
+        # self.output_padding = output_padding
+        self.groups = groups
+
+        self.bit_w = bit_w
+        self.bit_b = bit_b
+        # self.max_q = 2.0**(bit-1)-1.0
+        # self.min_q = -2.0**(bit-1)
+        # self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+
+        self.scale_w = nn.Parameter(torch.FloatTensor([scale_w]))
+        self.scale_b = nn.Parameter(torch.FloatTensor([scale_b]))
+
+        self.weight = nn.Parameter(torch.Tensor(out_channels, in_channels // groups, *kernel_size))
+        if bias:
+            self.bias = nn.Parameter(torch.Tensor(out_channels))
+        else:
+            self.register_parameter('bias', None)
+        self.init()
+       
+    def init(self):
+        n = self.in_channels
+        for k in self.kernel_size:
+            n *= k
+        stdv = 1. / math.sqrt(n)
+        self.weight.data.uniform_(-stdv, stdv)
+        if self.bias is not None:
+            self.bias.data.uniform_(-stdv, stdv)
+        
+
+    def forward(self, input):
+        
+
+        # output = F.conv2d(input,self.weight,bias = self.bias, stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+
+        Q_weight = scale.apply(self.weight,self.scale_w,self.bit_w, False)
+        Q_bias = scale.apply(self.bias,self.scale_b,self.bit_b, False)
+        output = F.conv2d(input,Q_weight,bias = None, stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+        output = scale.apply(output,self.scale_b,self.bit_b,False)
+
+        self.output = output
+
+        output = output.transpose(1,3)
+        output = output + Q_bias
+        output = output.transpose(1,3)
+
+        self.Q_weight = Q_weight
+
+        return output
+
+class Q_Tensorizedconv2d(nn.Module):
+    def __init__(self,
+                 in_channels,
+                 out_channels,
+                 kernel_size = (3,3),
+                 stride= (1,1),
+                 padding=(0,0),
+                 dilation=(1,1),
+                 groups=1,
+                 bias = True,
+                 padding_mode = 'zeros',
+                 device=None,
+                 dtype=None,
+                 init=None,
+                 shape=None,
+                 tensor_type='TensorTrain',
+                 max_rank=20,
+                 em_stepsize=1.0,
+                 prior_type='log_uniform',
+                 eta = None,
+                 bit_w = 8,
+                 bit_b = 8,
+                 scale_w = 2**(-5),
+                 scale_b = 2**(-5)
+    ):
+        super(Q_Tensorizedconv2d,self).__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.padding = padding
+        self.dilation = dilation
+        # self.transposed = transposed
+        # self.output_padding = output_padding
+        self.groups = groups
+
+        self.bit_w = bit_w
+        self.bit_b = bit_b
+        # self.max_q = 2.0**(bit-1)-1.0
+        # self.min_q = -2.0**(bit-1)
+        # self.quant = lambda x : fixed_point_quantize(x, wl=bit, fl=0, rounding="nearest")
+
+        self.scale_w = nn.Parameter(torch.FloatTensor([scale_w]))
+        self.scale_b = nn.Parameter(torch.FloatTensor([scale_b]))
+
+        # self.weight = nn.Parameter(torch.Tensor(out_channels, in_channels // groups, *kernel_size))
+        if bias:
+            self.bias = nn.Parameter(torch.Tensor(out_channels))
+        else:
+            self.register_parameter('bias', None)
+        self.init()
+
+        if shape == None:
+            shape = self.get_tensor_shape(out_channels)
+            shape = shape + self.get_tensor_shape(in_channels)
+            shape = shape + list(kernel_size)
+
+
+        target_stddev = 2/np.sqrt(self.in_channels*kernel_size[0]*kernel_size[1])
+        self.tensor = getattr(low_rank_tensors,tensor_type)(shape,prior_type=prior_type,em_stepsize=em_stepsize,max_rank=max_rank,initialization_method='nn',target_stddev=target_stddev,learned_scale=False,eta=eta)
+
+       
+    def init(self):
+        n = self.in_channels
+        for k in self.kernel_size:
+            n *= k
+        stdv = 1. / math.sqrt(n)
+        # self.weight.data.uniform_(-stdv, stdv)
+        if self.bias is not None:
+            self.bias.data.uniform_(-stdv, stdv)
+    
+    def get_tensor_shape(self,n):
+        if n==64:
+            return [8,8]
+        if n==128:
+            return [8,16]
+        if n==256:
+            return [16,16]
+        if n==512:
+            return [16,32]
+
+    def forward(self, input, rank_update = True):
+        
+        if self.training and rank_update:
+            self.tensor.update_rank_parameters()
+        
+        Q_factors = []        
+        for U in self.tensor.factors:
+            Q_factors.append(scale.apply(U,self.scale_w,self.bit_w, False))
+        Q_bias = (scale.apply(self.bias,self.scale_b,self.bit_b, False))
+        # output = F.conv2d(input,self.weight,bias = self.bias, stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+
+        w = self.tensor.get_full_factors(Q_factors).reshape(self.out_channels,self.in_channels,*self.kernel_size)
+        output = F.conv2d(input,w,bias = None, stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+        output = scale.apply(output,self.scale_b,self.bit_b,False)
+
+        self.output = output
+
+        output = output.transpose(1,3)
+        output = output + Q_bias
+        output = output.transpose(1,3)
+
+        self.Q_weight = w
+
+        return output
+
+
+class Tensorizedconv2d(nn.Module):
+    def __init__(self,
+                 in_channels,
+                 out_channels,
+                 kernel_size = (3,3),
+                 stride= (1,1),
+                 padding=(0,0),
+                 dilation=(1,1),
+                 groups=1,
+                 bias = True,
+                 padding_mode = 'zeros',
+                 device=None,
+                 dtype=None,
+                 init=None,
+                 shape=None,
+                 tensor_type='TensorTrain',
+                 max_rank=20,
+                 em_stepsize=1.0,
+                 prior_type='log_uniform',
+                 eta = None,
+    ):
+        super(Tensorizedconv2d,self).__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.padding = padding
+        self.dilation = dilation
+        # self.transposed = transposed
+        # self.output_padding = output_padding
+        self.groups = groups
+
+    
+
+        # self.weight = nn.Parameter(torch.Tensor(out_channels, in_channels // groups, *kernel_size))
+        if bias:
+            self.bias = nn.Parameter(torch.Tensor(out_channels))
+        else:
+            self.register_parameter('bias', None)
+        self.init()
+
+        if shape == None:
+            shape = self.get_tensor_shape(out_channels)
+            shape = shape + self.get_tensor_shape(in_channels)
+            shape = shape + list(kernel_size)
+
+
+        target_stddev = 2/np.sqrt(self.in_channels*kernel_size[0]*kernel_size[1])
+        self.tensor = getattr(low_rank_tensors,tensor_type)(shape,prior_type=prior_type,em_stepsize=em_stepsize,max_rank=max_rank,initialization_method='nn',target_stddev=target_stddev,learned_scale=False,eta=eta)
+
+       
+    def init(self):
+        n = self.in_channels
+        for k in self.kernel_size:
+            n *= k
+        stdv = 1. / math.sqrt(n)
+        # self.weight.data.uniform_(-stdv, stdv)
+        if self.bias is not None:
+            self.bias.data.uniform_(-stdv, stdv)
+    
+    def get_tensor_shape(self,n):
+        if n==64:
+            return [8,8]
+        if n==128:
+            return [8,16]
+        if n==256:
+            return [16,16]
+        if n==512:
+            return [16,32]
+
+    def forward(self, input, rank_update = True):
+        
+        if self.training and rank_update:
+            self.tensor.update_rank_parameters()
+        
+       
+        # output = F.conv2d(input,self.weight,bias = self.bias, stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+
+        w = self.tensor.get_full().reshape(self.out_channels,self.in_channels,*self.kernel_size)
+        output = F.conv2d(input,w,bias = self.bias, stride=self.stride,padding=self.padding,dilation=self.dilation,groups=self.groups)
+        self.output = output
+        return output
